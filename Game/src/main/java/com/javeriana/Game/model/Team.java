@@ -24,14 +24,14 @@ public class Team {
     @Column(name= "team_time_game", columnDefinition = "Decimal(10,2) default '000.00'")
     Long teamTimeGame;
 
-    @Column(name= "team_position_x", columnDefinition = "Decimal(10,5) default '000.00000'")
-    private Long teamPositionX;
+    @Column(name= "team_position_x", columnDefinition = "Decimal(10,2) default '000.00'")
+    Long teamPositionX;
 
-    @Column(name= "team_position_y", columnDefinition = "Decimal(10,5) default '000.00000'")
-    private Long teamPositionY;
+    @Column(name= "team_position_y", columnDefinition = "Decimal(10,2) default '000.00'")
+    Long teamPositionY;
 
-    @Column(name= "team_position_z", columnDefinition = "Decimal(10,5) default '000.00000'")
-    private Long teamPositionZ;
+    @Column(name= "team_position_z", columnDefinition = "Decimal(10,2) default '000.00'")
+    Long teamPositionZ;
 
     @ManyToOne
     Ship ship;

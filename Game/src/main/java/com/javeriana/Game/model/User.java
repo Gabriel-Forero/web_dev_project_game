@@ -20,7 +20,7 @@ public class User {
     @Column(name= "user_name")
     String userName;
 
-    @Column(name= "user_document",unique = true , nullable = false)
+    @Column(name= "user_document", nullable = false)
     String userDocument;
 
     @Column(name= "user_password", nullable = false)

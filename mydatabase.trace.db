@@ -330,3 +330,19 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
+2021-09-14 14:11:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "TEAM_POSITION_X DECIMAL(10, 5)": "671889.00000 (11)"
+Value too long for column "TEAM_POSITION_X DECIMAL(10, 5)": "671889.00000 (11)"; SQL statement:
+insert into team (team_id, ship_ship_id, team_current_money, team_name, team_position_x, team_position_y, team_position_z, team_time_game) values (null, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2021-09-14 14:14:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "TEAM_POSITION_X DECIMAL(10, 5)": "671889.00000 (11)"
+Value too long for column "TEAM_POSITION_X DECIMAL(10, 5)": "671889.00000 (11)"; SQL statement:
+insert into team (team_id, ship_ship_id, team_current_money, team_name, team_position_x, team_position_y, team_position_z, team_time_game) values (null, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2021-09-14 14:16:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "TEAM_POSITION_X DECIMAL(10, 5)": "671889.00000 (11)"
+Value too long for column "TEAM_POSITION_X DECIMAL(10, 5)": "671889.00000 (11)"; SQL statement:
+insert into team (team_id, ship_ship_id, team_current_money, team_name, team_position_x, team_position_y, team_position_z, team_time_game) values (null, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2021-09-14 14:17:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "TEAM_POSITION_X DECIMAL(10, 5)": "671889.00000 (11)"
+Value too long for column "TEAM_POSITION_X DECIMAL(10, 5)": "671889.00000 (11)"; SQL statement:
+insert into team (team_id, ship_ship_id, team_current_money, team_name, team_position_x, team_position_y, team_position_z, team_time_game) values (null, ?, ?, ?, ?, ?, ?, ?) [22001-200]
