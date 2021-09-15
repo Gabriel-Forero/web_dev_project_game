@@ -82,7 +82,6 @@ public class DataBaseInit implements ApplicationRunner {
        
         createPrice();
        
-       
     }
 
  private void createTeams()
@@ -246,7 +245,7 @@ private void createStar()
         starRepository.save(s);
     }
 
-    for(Star star:starRepository.findAll())
+    //for(Star star:starRepository.findAll())
     {
         //Star s = starRepository.findById((long) random.nextInt(39999)+1 ).orElseThrow();
         //star.getConnectedStarFrom().add(s);
