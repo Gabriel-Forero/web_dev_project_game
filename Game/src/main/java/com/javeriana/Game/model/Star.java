@@ -22,13 +22,13 @@ public class Star {
     @JsonManagedReference
     private List<Planet> planets = new ArrayList<>();
 
-    @Column(name= "star_position_x", columnDefinition = "Decimal(10,5) default '000.00000'")
+    @Column(name= "star_position_x", columnDefinition = "Decimal(10,2) default '000.00000'")
     private Long starPositionX;
 
-    @Column(name= "star_position_y", columnDefinition = "Decimal(10,5) default '000.00000'")
+    @Column(name= "star_position_y", columnDefinition = "Decimal(10,2) default '000.00000'")
     private Long starPositionY;
 
-    @Column(name= "star_position_z", columnDefinition = "Decimal(10,5) default '000.00000'")
+    @Column(name= "star_position_z", columnDefinition = "Decimal(10,2) default '000.00000'")
     private Long starPositionZ;
 
 

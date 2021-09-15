@@ -15,7 +15,6 @@ import com.javeriana.Game.repository.ShipRepository;
 import com.javeriana.Game.repository.StarRepository;
 import com.javeriana.Game.repository.TeamRepository;
 import com.javeriana.Game.repository.UserRepository;
-import com.javeriana.Game.service.ShipService;
 import com.javeriana.Game.service.UserService;
 
 import org.apache.commons.text.RandomStringGenerator;
@@ -28,9 +27,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataBaseInit implements ApplicationRunner {
 
-    private static final Team NULL = null;
-    private static final Planet NULLP = null;
-    private static final Star NULLS = null;
+
 
 
     // Repositorios
@@ -73,6 +70,16 @@ public class DataBaseInit implements ApplicationRunner {
             createUser(teamId);
             teamId++;
         }
+        createAsset();
+        createAssetByTeam();
+        createStar();
+        int starId=1;
+        for(int j=0;j<400;j++)
+        {
+            createPlanet(starId);
+            starId++;
+        }
+       
         createPrice();
        
        
@@ -81,10 +88,6 @@ public class DataBaseInit implements ApplicationRunner {
  private void createTeams()
  {
     final int NUM_TEAMS = 10;
-  
-    final int NUM_ASSET = 500;
-    final int NUM_STAR = 40000;
-    final int NUM_SHIPS = 20;
     Random random = new Random(1234);
     RandomStringGenerator randomGen = new RandomStringGenerator.Builder().withinRange('a', 'z')
             .usingRandom(random::nextInt).build();
@@ -172,6 +175,26 @@ public class DataBaseInit implements ApplicationRunner {
         
 }
 
+private void createAsset()
+{
+    final int NUM_ASSET = 500;
+    Random random = new Random(1234);
+    RandomStringGenerator randomGen = new RandomStringGenerator.Builder().withinRange('a', 'z')
+            .usingRandom(random::nextInt).build();
+    for(int j=0; j<NUM_ASSET; j++){
+
+        String name = randomGen.generate(5, 10);
+        int id = random.nextInt(1000000);
+        int volume = random.nextInt(1000000);
+        Asset a = new Asset();
+        a.setAssetName(name);
+        a.setAssetId((long) id);
+        a.setAssetVolume((long) volume);
+        assetRepository.save(a);
+
+    }
+}
+
 private void createShips()
 {
     final int NUM_SHIPS = 20;
@@ -198,25 +221,124 @@ private void createShips()
 
 
 }
+private void createStar()
+{
+    final int NUM_STAR = 4000;
+    Random random = new Random(1234);
+    RandomStringGenerator randomGen = new RandomStringGenerator.Builder().withinRange('a', 'z')
+            .usingRandom(random::nextInt).build();
+    for (int j = 0; j < NUM_STAR; j++)
+    {
+        String name = randomGen.generate(5, 10);
+        int id = random.nextInt(1000000);
+
+        int posX = random.nextInt(1000000);  
+        int posY = random.nextInt(1000000);  
+        int posZ = random.nextInt(1000000);  
+
+        Star s = new Star();
+        s.setStarId((long) id);
+        s.setStarName(name);
+        s.setStarPositionX((long) posX);
+        s.setStarPositionY((long) posY);
+        s.setStarPositionZ((long) posZ);
+        
+        starRepository.save(s);
+    }
+
+    for(Star star:starRepository.findAll())
+    {
+        //Star s = starRepository.findById((long) random.nextInt(39999)+1 ).orElseThrow();
+        //star.getConnectedStarFrom().add(s);
+        //star.getConnectedStars().add(s);
+        //s.getConnectedStarFrom().add(star);
+        //s.getConnectedStars().add(star);
+        //starRepository.save(star);
+        //starRepository.save(s);
+    }
+}
+private void createPlanet(int starId)
+{
+   
+    Random random = new Random(1234);
+    RandomStringGenerator randomGen = new RandomStringGenerator.Builder().withinRange('a', 'z')
+            .usingRandom(random::nextInt).build();
+    int NUM_PLANET = random.nextInt(2) +1;
+    for (int j = 0; j < NUM_PLANET; j++)
+    {
+        String name = randomGen.generate(5, 10);
+        int id = random.nextInt(1000000);
+        Planet p = new Planet();
+        p.setPlanetId((long) id);
+        p.setPlanetName(name);
+        Star s = starRepository.findById((long) starId).orElseThrow();
+        p.setStar(s);
+        planetRepository.save(p);
+    }
+}
+private void createAssetByTeam()
+{
+    Random random = new Random(1234);
+    final int ASSETS_PER_ABT_PER_TEAM = 4;
+    final int ABT_PER_TEAM = 5;
+            for (Team team : teamRepository.findAll()) {
+                for (int j = 0; j < ASSETS_PER_ABT_PER_TEAM; j++) {
+                    for (int i = 0; i < ABT_PER_TEAM; i++) {
+                        try {
+                            int id = random.nextInt(1000000);
+                            int amount = random.nextInt(1000000);
+                            
+                            Asset a = assetRepository.findById((long)random.nextInt(499)+1)
+                                    .orElseThrow();
+                            // company.getEmployees().add(p);
+                            AssetsByTeam ABT = new AssetsByTeam();
+                            ABT.setAsset(a);
+                            ABT.setTeam(team);
+                            ABT.setAssetsByTeamId((long) id);
+                            ABT.setAssetAmount(amount);
+
+                            assetsByTeamRepository.save(ABT);
+                            
+                        } catch (NoSuchElementException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+}
 
 private void createPrice()
 {
-    final int NUM_PRICES = 1200;
-    Random random = new Random(1234);
-    for(int j=0; j<NUM_PRICES; j++)
-    {
-        int id = random.nextInt(1000000);
-        int amount = random.nextInt(1000000);
-        int demandFactor= random.nextInt(1000000);
-        int supplyFactor= random.nextInt(1000000);
-        
-        Price newPrice = new Price();
-        newPrice.setPriceId((long) id);
-        newPrice.setDemandFactor((long) demandFactor);
-        newPrice.setAssetAmount(amount);
-        newPrice.setSupplyFactor((long) supplyFactor);
-        priceRepository.save(newPrice);
 
+    final int PLANET_PER_PRICE_PER_ASSET = 4;
+    final int PRICE_PER_PLANET = 5;
+    Random random = new Random(1234);
+   
+
+    for (Planet planet : planetRepository.findAll()) {
+        for (int j = 0; j < PLANET_PER_PRICE_PER_ASSET; j++) {
+            for (int i = 0; i < PRICE_PER_PLANET; i++) {
+                try {
+                    int id = random.nextInt(1000000);
+                    int amount = random.nextInt(1000000);
+                    int demandFactor= random.nextInt(1000000);
+                    int supplyFactor= random.nextInt(1000000);
+                    Asset a = assetRepository.findById((long)random.nextInt(499)+1)
+                                    .orElseThrow();
+                    Price newPrice = new Price();
+                    newPrice.setPriceId((long) id);
+                    newPrice.setDemandFactor((long) demandFactor);
+                    newPrice.setAssetAmount(amount);
+                    newPrice.setSupplyFactor((long) supplyFactor);
+                    newPrice.setPlanet(planet);
+                    newPrice.setAsset(a);
+                    priceRepository.save(newPrice);
+                    
+                } catch (NoSuchElementException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 }
