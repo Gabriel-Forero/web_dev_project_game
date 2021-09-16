@@ -32,14 +32,14 @@ public class Star {
     private Long starPositionZ;
 
 
-    @ManyToMany
+    @OneToMany
     @JoinTable(name="star_connection",
             joinColumns=@JoinColumn(name="star_id"),
             inverseJoinColumns=@JoinColumn(name="connected_star")
     )
     private List<Star> connectedStars;
 
-    @ManyToMany
+    @OneToMany
     @JoinTable(name="star_connection",
             joinColumns=@JoinColumn(name="star_id"),
             inverseJoinColumns=@JoinColumn(name="star_of")
