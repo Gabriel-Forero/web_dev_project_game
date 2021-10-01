@@ -6,12 +6,25 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './componentes/shared/navbar/navbar.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { LogInComponent } from './componentes/log-in/log-in.component';
+import { CrudComponent } from './componentes/crud/crud.component';
+import { CardCrudComponent } from './componentes/card-crud/card-crud.component';
+import { SidebarComponent } from './componentes/shared/sidebar/sidebar.component';
+import { JuegoComponent } from './componentes/juego/juego.component';
+import { TarjetaComponent } from './componentes/shared/tarjeta/tarjeta.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    LogInComponent,
+    CrudComponent,
+    CardCrudComponent,
+    SidebarComponent,
+    JuegoComponent,
+    TarjetaComponent
   ],
   imports: [
     BrowserModule,
