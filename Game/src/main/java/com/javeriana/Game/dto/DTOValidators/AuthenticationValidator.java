@@ -1,2 +1,5 @@
-package com.javeriana.Game.dto.DTOValidators;public class AuthenticationValidator {
+package com.javeriana.Game.dto.DTOValidators;
+
+public class AuthenticationValidator {
+
 }

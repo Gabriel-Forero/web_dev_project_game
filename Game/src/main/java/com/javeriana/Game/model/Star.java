@@ -1,4 +1,5 @@
 package com.javeriana.Game.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class Star {
     private String starName;
 
     @OneToMany(mappedBy="star")
-    @JsonManagedReference
+    @JsonBackReference
     private List<Planet> planets = new ArrayList<>();
 
     @Column(name= "star_position_x", columnDefinition = "Decimal(10,2) default '000.00000'")
@@ -32,50 +33,18 @@ public class Star {
     private Long starPositionZ;
 
 
-    @OneToMany
-    @JoinTable(name="star_connection",
-            joinColumns=@JoinColumn(name="star_id"),
-            inverseJoinColumns=@JoinColumn(name="connected_star")
-    )
-    private List<Star> connectedStars;
-
-    @OneToMany
-    @JoinTable(name="star_connection",
-            joinColumns=@JoinColumn(name="star_id"),
-            inverseJoinColumns=@JoinColumn(name="star_of")
-    )
-    @JsonManagedReference
-    private List<Star> connectedStarFrom;
-
     public Star() {}
 
-    public Star(Long starId, String starName, List<Planet> planets, Long starPositionX, Long starPositionY, Long starPositionZ, List<Star> connectedStars, List<Star> connectedStarFrom) {
+    public Star(Long starId, String starName, List<Planet> planets, Long starPositionX, Long starPositionY, Long starPositionZ) {
         this.starId = starId;
         this.starName = starName;
         this.planets = planets;
         this.starPositionX = starPositionX;
         this.starPositionY = starPositionY;
         this.starPositionZ = starPositionZ;
-        this.connectedStars = connectedStars;
-        this.connectedStarFrom = connectedStarFrom;
-    }
 
-    public List<Star> getConnectedStars() {
-        return connectedStars;
     }
-
-    public void setConnectedStars(List<Star> connectedStars) {
-        this.connectedStars = connectedStars;
-    }
-
-    public List<Star> getConnectedStarFrom() {
-        return connectedStarFrom;
-    }
-
-    public void setConnectedStarFrom(List<Star> connectedStarFrom) {
-        this.connectedStarFrom = connectedStarFrom;
-    }
-
+    
     public Long getStarId() {
         return starId;
     }

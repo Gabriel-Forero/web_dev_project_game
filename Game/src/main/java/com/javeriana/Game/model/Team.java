@@ -1,4 +1,5 @@
 package com.javeriana.Game.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -34,18 +35,16 @@ public class Team {
     Long teamPositionZ;
 
     @ManyToOne
+    @JsonManagedReference
     Ship ship;
 
     @OneToMany(mappedBy="team")
+    @JsonBackReference
     List<User> users =  new ArrayList<>();
 
     @OneToMany(mappedBy="team")
-    @JsonManagedReference
+    @JsonBackReference
     Set<AssetsByTeam> assets;
-
-
-
-
 
     public Team() {}
 

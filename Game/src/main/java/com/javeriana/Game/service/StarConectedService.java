@@ -15,21 +15,14 @@ public class StarConectedService {
         this.starConectedRepository = starConectedRepository;
     }
 
-    public StarConected addAssetsByStarConected(StarConected starConected) {
+    public StarConected addConnection(StarConected starConected) {
         return starConectedRepository.save(starConected);
     }
 
-    public List<StarConected> findAllStarConected() {
+    public List<StarConected> findAllStarConnected() {
         return (List<StarConected>) starConectedRepository.findAll();
     }
 
-    public StarConected updateAssetsByTeam(StarConected starConected ) {
-        return starConectedRepository.save(starConected);
-    }
-
-    public void deleteAssetsByStarConected(Long id) {
-        starConectedRepository.deleteById(id);
-    }
 }
 
 

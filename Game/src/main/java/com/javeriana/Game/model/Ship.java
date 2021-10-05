@@ -1,4 +1,7 @@
 package com.javeriana.Game.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,6 +26,7 @@ public class Ship  implements Serializable {
     Long shipVolume;
 
     @OneToMany(mappedBy="ship")
+    @JsonBackReference
     List<Team> teams = new ArrayList<>();
 
     public Ship() {}

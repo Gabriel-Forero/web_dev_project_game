@@ -1,5 +1,7 @@
 package com.javeriana.Game.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,10 +17,12 @@ public class AssetsByTeam {
     private int assetAmount;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "asset_id")
     private Asset asset;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "team_id")
     private Team team;
 

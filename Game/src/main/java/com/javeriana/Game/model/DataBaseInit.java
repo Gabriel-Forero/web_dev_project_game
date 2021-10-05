@@ -143,6 +143,7 @@ public class DataBaseInit implements ApplicationRunner {
             newUser.setUserDocument(document);
             newUser.setUserName(name);
             newUser.setUserPassword(password);
+            newUser.setUserAdmin(false);
 
             if (i < 4) {
                 newUser.setUserRole(m);
@@ -236,13 +237,14 @@ public class DataBaseInit implements ApplicationRunner {
             for (int i = 0; i < NUM_STAR_CONECTED; i++) {
                 StarConected sc = new StarConected();
                 Star star = starRepository.findById((long) j + 1 ).orElseThrow();
-                int id = random.nextInt(1000000);
-                sc.setStarConectedId((long) id);
                 sc.setStarFrom(star);
                 Star s = starRepository.findById((long) random.nextInt(399) + 1 + 1).orElseThrow();
                 sc.setStarTo(s);         
                 starConectedRepository.save(sc);
-                                
+                StarConected scB = new StarConected();
+                scB.setStarFrom(s);
+                scB.setStarTo(star);
+                starConectedRepository.save(scB);
             }
 
         

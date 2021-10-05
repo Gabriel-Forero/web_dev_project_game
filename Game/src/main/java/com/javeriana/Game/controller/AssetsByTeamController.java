@@ -1,2 +1,4 @@
-package com.javeriana.Game.controller;public class AssetsByTeamController {
+package com.javeriana.Game.controller;
+
+public class AssetsByTeamController {
 }

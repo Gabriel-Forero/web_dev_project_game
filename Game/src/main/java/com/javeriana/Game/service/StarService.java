@@ -42,25 +42,6 @@ public class StarService {
         return planet;
     }
 
-    public boolean connectStar(Star starA, Star starB){
-        if(starA.getStarId() == starB.getStarId()  ){
-            log.warn("Stars sent are equals id: {} ", String.valueOf(starB.getStarId()));
-            return false;
-        }
-        starA.getConnectedStars().add(starB);
-        starA.getConnectedStarFrom().add(starB);
-        starB.getConnectedStars().add(starB);
-        starB.getConnectedStarFrom().add(starB);
-        starRepo.save(starA);
-        starRepo.save(starB);
-        log.info("Connection created between: {} and {} ", String.valueOf(starA.getStarId()), String.valueOf(starB.getStarId()));
-        return true;
-    }
-
-    public boolean isConnected(Star starA, Star starB){
-     return starA.getConnectedStars().contains(starB);
-    }
-
     public List<Planet> getPlanetsFromStar(Star star){
         return star.getPlanets();
     }

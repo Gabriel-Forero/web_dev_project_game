@@ -1,6 +1,9 @@
 package com.javeriana.Game.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +22,11 @@ public class Planet {
 
 
     @OneToMany(mappedBy = "planet")
+    @JsonBackReference
     private List<Price> assets = new ArrayList<>();
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name="star_id", nullable=false)
     private Star star;
 

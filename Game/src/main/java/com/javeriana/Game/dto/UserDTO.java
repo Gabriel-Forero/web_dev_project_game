@@ -1,2 +1,5 @@
-package com.javeriana.Game.dto;public class UserDTO {
+package com.javeriana.Game.dto;
+
+public class UserDTO {
+
 }

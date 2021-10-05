@@ -15,37 +15,33 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "user_id")
-    Long userId;
+    private Long userId;
 
     @Column(name= "user_name")
-    String userName;
+    private String userName;
 
     @Column(name= "user_document", nullable = false)
-    String userDocument;
+    private String userDocument;
 
     @Column(name= "user_password", nullable = false)
-    String userPassword;
+    private String userPassword;
 
     @Column(name= "user_role", nullable = false)
     @Enumerated(EnumType.STRING)
-    UserRoles userRole;
+    private UserRoles userRole;
 
     @ManyToOne
     @JoinColumn(name="team_id")
     @JsonManagedReference
-    Team team;
+    private Team team;
+
+    @Column(name = "user_admin", columnDefinition="bit default 0")
+    private Boolean userAdmin;
 
     public User() {
     }
 
-    public User(Long userId, String userName, String userDocument, String userPassword, UserRoles userRole) {
-        this.userId = userId;
-        this.userName = userName;
-        this.userDocument = userDocument;
-        this.userPassword = userPassword;
-        this.userRole = userRole;
 
-    }
 
 
 
@@ -95,5 +91,13 @@ public class User {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public Boolean getUserAdmin() {
+        return userAdmin;
+    }
+
+    public void setUserAdmin(Boolean userAdmin) {
+        this.userAdmin = userAdmin;
     }
 }
