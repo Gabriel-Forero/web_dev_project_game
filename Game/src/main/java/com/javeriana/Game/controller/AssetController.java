@@ -1,4 +1,4 @@
 package com.javeriana.Game.controller;
 
-public class AssetControler {
+public class AssetController {
 }

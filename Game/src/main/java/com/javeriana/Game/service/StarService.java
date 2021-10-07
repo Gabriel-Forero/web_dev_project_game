@@ -23,6 +23,8 @@ public class StarService {
         return starRepo.save(star);
     }
 
+    public Star findByStarId(Long starId) {return starRepo.findByStarId(starId);}
+
     public List<Star> findAllStars(){
         return (List<Star>) starRepo.findAll();
     }

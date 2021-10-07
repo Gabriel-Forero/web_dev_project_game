@@ -1,5 +1,6 @@
 package com.javeriana.Game.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,17 +21,17 @@ public class Star {
     private String starName;
 
     @OneToMany(mappedBy="star")
-    @JsonBackReference
+    @JsonIgnore
     private List<Planet> planets = new ArrayList<>();
 
-    @Column(name= "star_position_x", columnDefinition = "Decimal(10,2) default '000.00000'")
-    private Long starPositionX;
+    @Column(name= "star_position_x", columnDefinition = "Decimal(10,2) default '100.00'")
+    private double starPositionX;
 
-    @Column(name= "star_position_y", columnDefinition = "Decimal(10,2) default '000.00000'")
-    private Long starPositionY;
+    @Column(name= "star_position_y", columnDefinition = "Decimal(10,2) default '100.00'")
+    private double starPositionY;
 
-    @Column(name= "star_position_z", columnDefinition = "Decimal(10,2) default '000.00000'")
-    private Long starPositionZ;
+    @Column(name= "star_position_z", columnDefinition = "Decimal(10,2) default '100.00'")
+    private double starPositionZ;
 
 
     public Star() {}
@@ -69,27 +70,27 @@ public class Star {
         this.planets = planets;
     }
 
-    public Long getStarPositionX() {
+    public double getStarPositionX() {
         return starPositionX;
     }
 
-    public void setStarPositionX(Long starPositionX) {
+    public void setStarPositionX(double starPositionX) {
         this.starPositionX = starPositionX;
     }
 
-    public Long getStarPositionY() {
+    public double getStarPositionY() {
         return starPositionY;
     }
 
-    public void setStarPositionY(Long starPositionY) {
+    public void setStarPositionY(double starPositionY) {
         this.starPositionY = starPositionY;
     }
 
-    public Long getStarPositionZ() {
+    public double getStarPositionZ() {
         return starPositionZ;
     }
 
-    public void setStarPositionZ(Long starPositionZ) {
+    public void setStarPositionZ(double starPositionZ) {
         this.starPositionZ = starPositionZ;
     }
 }

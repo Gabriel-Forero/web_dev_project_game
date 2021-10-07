@@ -1,5 +1,6 @@
 package com.javeriana.Game.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class User {
     @Column(name= "user_name")
     private String userName;
 
-    @Column(name= "user_document", nullable = false)
+    @Column(name= "user_document", nullable = false, unique = true)
     private String userDocument;
 
     @Column(name= "user_password", nullable = false)
@@ -32,7 +33,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name="team_id")
-    @JsonManagedReference
+    @JsonIgnore
     private Team team;
 
     @Column(name = "user_admin", columnDefinition="bit default 0")
@@ -40,10 +41,6 @@ public class User {
 
     public User() {
     }
-
-
-
-
 
     public Long getUserId() {
         return userId;

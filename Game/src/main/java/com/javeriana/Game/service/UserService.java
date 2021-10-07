@@ -28,7 +28,9 @@ public class UserService {
     }
 
     public User updateUser(User user) {
-        if(findUserByDocument(user.getUserDocument())!= null){
+        log.info("user {}", user.toString());
+        if( user != null){
+            log.info("user {} updated",user.toString());
             return userRepo.save(user);
         }
         return null;
