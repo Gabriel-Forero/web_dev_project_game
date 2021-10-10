@@ -1,5 +1,7 @@
 package com.javeriana.Game.service;
+import com.javeriana.Game.dto.AddPlanetDTO;
 import com.javeriana.Game.model.Planet;
+import com.javeriana.Game.model.Star;
 import com.javeriana.Game.repository.PlanetRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,12 @@ public class PlanetService {
         this.planetRepo=planetRepo;
     }
 
-    public Planet addPlanet(Planet planet) {
-        return planetRepo.save(planet);
+    public Planet addPlanet(AddPlanetDTO planet) {
+
+        Planet newPlanet = new Planet();
+        newPlanet.setPlanetName(planet.getPlanetName());
+        newPlanet.setStar(planet.getStar());
+        return planetRepo.save(newPlanet);
     }
 
     public List<Planet> findAllPlanets(){
@@ -30,9 +36,7 @@ public class PlanetService {
         planetRepo.deleteById(id);
     }
 
-    public List<Planet> findPlanetsByStar(Planet planet){
-        return planetRepo.findPlanetsByStar(planet.getPlanetId());
-    }
+    public Planet findPlanetById(Long planetId) {return planetRepo.findPlanetById(planetId);}
 
 
 }

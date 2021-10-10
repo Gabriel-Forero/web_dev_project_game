@@ -1,5 +1,7 @@
 package com.javeriana.Game.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.javeriana.Game.dto.AuthenticationDTO;
+import com.javeriana.Game.model.Planet;
 import com.javeriana.Game.model.Star;
-import com.javeriana.Game.model.User;
 import com.javeriana.Game.service.StarService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,5 +39,15 @@ public class StarController {
 			return new ResponseEntity<Star>(star, HttpStatus.OK);
 		else
 			return new ResponseEntity( HttpStatus.NOT_FOUND);
+	}
+
+	@GetMapping("/getPlanetsByStar/{starId}")
+	public ResponseEntity<List<Planet>> getPlanetsByStar(@PathVariable Long starId){
+		Star star = starService.findByStarId(starId);
+		if(star!=null)
+			return new ResponseEntity<List<Planet>>(star.getPlanets(), HttpStatus.OK);
+		else
+			return new ResponseEntity( HttpStatus.NOT_FOUND);
+
 	}
 }

@@ -1,4 +1,5 @@
 package com.javeriana.Game.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -21,12 +22,12 @@ public class Price {
     private Long supplyFactor;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonIgnore
     @JoinColumn(name = "asset_id")
     private Asset asset;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonIgnore
     @JoinColumn(name = "planet_id")
     private Planet planet;
 
