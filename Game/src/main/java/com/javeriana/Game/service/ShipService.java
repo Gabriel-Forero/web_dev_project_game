@@ -32,6 +32,10 @@ public class ShipService {
         shipRepo.deleteById(id);
     }
 
+    public Ship findByShipId(Long shipId){
+        return shipRepo.findByShipId(shipId);
+    }
+
     public Team addTeam(Ship ship, Team team){
         ship.getTeams().add(team);
         //log.info("New team named: {} with id {} added to the ship {}",team.getTeamName(), String.valueOf(team.getTeamId()), ship.getShipType());

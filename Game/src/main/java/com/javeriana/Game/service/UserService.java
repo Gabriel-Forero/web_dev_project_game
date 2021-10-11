@@ -1,4 +1,5 @@
 package com.javeriana.Game.service;
+import com.javeriana.Game.dto.AddUserDTO;
 import com.javeriana.Game.exceptions.UserNotFoundException;
 import com.javeriana.Game.model.User;
 import com.javeriana.Game.repository.UserRepository;
@@ -19,7 +20,15 @@ public class UserService {
         this.userRepo=userRepo;
     }
 
-    public User addUser(User user) {
+    public User addUser(AddUserDTO userDTO) {
+
+        User user =  new User();
+        user.setTeam(userDTO.getTeam());
+        user.setUserRole(userDTO.getUserRole());
+        user.setUserName(userDTO.getUserName());
+        user.setUserAdmin(userDTO.getUserAdmin());
+        user.setUserDocument(userDTO.getUserDocument());
+        user.setUserPassword(userDTO.getUserPassword());
         return userRepo.save(user);
     }
 

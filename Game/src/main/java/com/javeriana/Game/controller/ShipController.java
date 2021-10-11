@@ -1,2 +1,39 @@
-package com.javeriana.Game.controller;public class ShipController {
+package com.javeriana.Game.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.javeriana.Game.dto.AddUserDTO;
+import com.javeriana.Game.model.Ship;
+import com.javeriana.Game.model.User;
+import com.javeriana.Game.service.ShipService;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RestController
+@RequestMapping(path="/ship")
+public class ShipController {
+
+	private final ShipService shipService;
+
+	public ShipController(ShipService shipService) {
+		this.shipService = shipService;
+	}
+
+	@PostMapping("/addShip")
+	public ResponseEntity<Ship> addShip(@RequestBody Ship ship){
+		Ship nShip =shipService.addShip(ship);
+		return new ResponseEntity<Ship>(nShip, HttpStatus.OK);
+	}
+
+	@GetMapping("/findShip/{shipId}")
+	public ResponseEntity<Ship> findShip(@PathVariable Long shipId){
+		Ship nShip =shipService.findByShipId(shipId);
+		return new ResponseEntity<Ship>(nShip, HttpStatus.OK);
+	}
 }

@@ -1,8 +1,11 @@
 package com.javeriana.Game.controller;
 
+import com.javeriana.Game.dto.AddUserDTO;
 import com.javeriana.Game.dto.AuthenticationDTO;
 
+import com.javeriana.Game.model.Team;
 import com.javeriana.Game.model.User;
+import com.javeriana.Game.service.TeamService;
 import com.javeriana.Game.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +14,15 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(path="/user" ,consumes = "application/json;charset=utf-8")
+@RequestMapping(path="/user")
 public class UserController {
 
     private final UserService userService;
+    private final TeamService teamService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, TeamService teamService) {
         this.userService = userService;
+        this.teamService = teamService;
     }
 
     @PostMapping("/login")
@@ -31,8 +36,19 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public ResponseEntity<User> addUser(@RequestBody User user){
-        userService.addUser(user);
+    public ResponseEntity<User> addUser(@RequestBody AddUserDTO userDTO){
+
+        Team team =  null;
+        if(!userDTO.getUserAdmin()){
+            log.info("it is not admin");
+            team = teamService.findByTeamId(userDTO.getTeamId());
+            if(team == null){
+                log.info("team not found");
+                return new ResponseEntity( HttpStatus.OK);
+            }
+        }
+        userDTO.setTeam(team);
+        User user =userService.addUser(userDTO);
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 

@@ -1,5 +1,6 @@
 package com.javeriana.Game.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -14,37 +15,37 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "team_id")
-    Long teamId;
+    private Long teamId;
 
     @Column(name= "team_name")
-    String teamName;
+    private String teamName;
 
     @Column(name= "team_current_money" , columnDefinition = "Decimal(10,2) default '000.00'")
-    Long teamCurrentMoney;
+    private Long teamCurrentMoney;
 
     @Column(name= "team_time_game", columnDefinition = "Decimal(10,2) default '000.00'")
-    Long teamTimeGame;
+    private Long teamTimeGame;
 
     @Column(name= "team_position_x", columnDefinition = "Decimal(10,2) default '000.00'")
-    Long teamPositionX;
+    private Long teamPositionX;
 
     @Column(name= "team_position_y", columnDefinition = "Decimal(10,2) default '000.00'")
-    Long teamPositionY;
+    private Long teamPositionY;
 
     @Column(name= "team_position_z", columnDefinition = "Decimal(10,2) default '000.00'")
-    Long teamPositionZ;
+    private Long teamPositionZ;
 
     @ManyToOne
-    @JsonManagedReference
-    Ship ship;
+    @JsonIgnore
+    private Ship ship;
 
     @OneToMany(mappedBy="team")
-    @JsonBackReference
-    List<User> users =  new ArrayList<>();
+    @JsonIgnore
+    private List<User> users =  new ArrayList<>();
 
     @OneToMany(mappedBy="team")
-    @JsonBackReference
-    Set<AssetsByTeam> assets;
+    @JsonIgnore
+    private Set<AssetsByTeam> assets;
 
     public Team() {}
 
