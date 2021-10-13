@@ -1,1 +1,7 @@
-<p>juego works!</p>
+<app-navbar></app-navbar>
+
+<div class="col" style="padding-top: 20px; padding-left: 27rem;">
+
+    <button *ngIf="juego" class="btn btn-danger btn-lg" (click)="finalizarJuego()">Finalizar Juego</button>
+    <button *ngIf="!juego" class="btn btn-dark btn-lg" (click)="iniciarJuego()">Iniciar Juego</button>
+</div>

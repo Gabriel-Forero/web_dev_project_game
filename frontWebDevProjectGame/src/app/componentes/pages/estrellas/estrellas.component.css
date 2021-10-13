@@ -1,0 +1,46 @@
+.mat-toolbar {
+    background-color: white;
+    color: black;
+}
+
+.centrar {
+    text-align: center;
+}
+
+.icons {
+    font-size: 60px;
+    text-align: center;
+}
+
+.box {
+    width: 800px;
+    height: 40px;
+    border: 1px solid red;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.box>i {
+    font-size: 20px;
+    color: black
+}
+
+.box>input {
+    flex: 1;
+    height: 30px;
+    border: black;
+    outline: none;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+table {
+    width: 95%;
+    margin: 2rem;
+}
+
+th {
+    width: 10%;
+}

@@ -1,1 +1,57 @@
-<p>log-in works!</p>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+
+<body>
+    <main class="login-design">
+        <div>
+            <img src="../../../assets/nave.png" alt="" />
+        </div>
+        <div class="login">
+            <div class="login-data">
+
+                <h1>Inicio de Sesión</h1>
+                <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+                    <span class="text-danger animated fadeIn"> El correo es obligatorio</span>
+                    <div class="input-group">
+                        <label class="input-fill">
+                                <input  type="text" name="email" formControlName="userDocument"  required  />
+                                <span class="input-label">Usuario</span>
+                                <i class="fas fa-envelope"></i>
+                            </label>
+                    </div>
+                    <span class="text-danger animated fadeIn"> La contraseña debe tener 6 letras</span>
+                    <div class="input-group">
+                        <label class="input-fill">
+                                <input type="password" name="password" id="password" minlength="6"/>
+                                <span class="input-label">Contraseña</span>
+                                <i class="fas fa-lock"></i>
+                            </label>
+                    </div>
+                    <div class="row">
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="wrap-input100 m-b-16">
+                                Recordar mi usuario
+                            </label>
+                            <a routerLink="/home" routerLinkActive="active">¿Olvidaste tú contraseña?</a>
+                        </div>
+
+                        <div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-danger">Log in</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </main>
+</body>

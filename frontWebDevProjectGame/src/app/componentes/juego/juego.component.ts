@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./juego.component.css']
 })
 export class JuegoComponent implements OnInit {
-
+  
+  juego:boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  iniciarJuego()
+  {
+    
+    this.juego =true;
+  }
+
+  finalizarJuego()
+  {
+    this.juego = false;
   }
 
 }
