@@ -50,4 +50,10 @@ public class StarController {
 			return new ResponseEntity( HttpStatus.NOT_FOUND);
 
 	}
+
+	@GetMapping("/findAllStars")
+	public ResponseEntity<List<Star>> findAllStars(){
+		List<Star> stars = starService.findAllStars();
+		return new ResponseEntity<List<Star>>(stars, HttpStatus.OK);
+	}
 }

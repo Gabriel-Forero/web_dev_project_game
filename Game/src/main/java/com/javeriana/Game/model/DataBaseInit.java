@@ -232,13 +232,13 @@ public class DataBaseInit implements ApplicationRunner {
             starRepository.save(s);
         }
 
-        for (int j = 0; j < 400; j++) {
+        for (int j = 0; j < 700; j++) {
 
             for (int i = 0; i < NUM_STAR_CONECTED; i++) {
                 StarConected sc = new StarConected();
                 Star star = starRepository.findById((long) j + 1 ).orElseThrow();
                 sc.setStarFrom(star);
-                Star s = starRepository.findById((long) random.nextInt(399) + 1 + 1).orElseThrow();
+                Star s = starRepository.findById((long) random.nextInt(699) + 1 + 1).orElseThrow();
                 sc.setStarTo(s);         
                 starConectedRepository.save(sc);
                 StarConected scB = new StarConected();

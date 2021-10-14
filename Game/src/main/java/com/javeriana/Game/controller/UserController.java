@@ -1,5 +1,7 @@
 package com.javeriana.Game.controller;
 
+import java.util.List;
+
 import com.javeriana.Game.dto.AddUserDTO;
 import com.javeriana.Game.dto.AuthenticationDTO;
 
@@ -63,7 +65,11 @@ public class UserController {
         }
         User userUpdated = userService.updateUser(user);
         return new ResponseEntity<User>(userUpdated, HttpStatus.OK);
+    }
 
-
+    @GetMapping("/findAllUsers")
+    public ResponseEntity<List<User>> findAllUser(){
+        List<User> users = userService.findAllUsers();
+        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 }

@@ -1,5 +1,7 @@
 package com.javeriana.Game.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +56,12 @@ public class PlanetController {
 			return new ResponseEntity<Planet>(planet, HttpStatus.OK);
 		else
 			return new ResponseEntity( HttpStatus.NOT_FOUND);
+	}
+
+	@GetMapping("/findAllPlanets")
+	public ResponseEntity<List<Planet>> findAllPlanets(){
+		List<Planet> planets = planetService.findAllPlanets();
+		return new ResponseEntity<List<Planet>>(planets, HttpStatus.OK);
 	}
 
 }

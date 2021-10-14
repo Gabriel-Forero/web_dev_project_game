@@ -1,5 +1,7 @@
 package com.javeriana.Game.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.javeriana.Game.dto.AddUserDTO;
 import com.javeriana.Game.model.Ship;
+import com.javeriana.Game.model.Team;
 import com.javeriana.Game.model.User;
 import com.javeriana.Game.service.ShipService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,5 +38,11 @@ public class ShipController {
 	public ResponseEntity<Ship> findShip(@PathVariable Long shipId){
 		Ship nShip =shipService.findByShipId(shipId);
 		return new ResponseEntity<Ship>(nShip, HttpStatus.OK);
+	}
+
+	@GetMapping("/findAllShips")
+	public ResponseEntity<List<Ship>> findAllShips(){
+		List<Ship> ships = shipService.findAllShips();
+		return new ResponseEntity<List<Ship>>(ships, HttpStatus.OK);
 	}
 }

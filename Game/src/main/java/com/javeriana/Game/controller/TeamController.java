@@ -55,6 +55,12 @@ public class TeamController {
 		return new ResponseEntity<List<User>>(team.getUsers(), HttpStatus.OK);
 	}
 
+	@GetMapping("/findAllTeams")
+	public ResponseEntity<List<Team>> findAllUser(){
+		List<Team> teams = teamservice.findAllTeams();
+		return new ResponseEntity<List<Team>>(teams, HttpStatus.OK);
+	}
+
 
 
 }
