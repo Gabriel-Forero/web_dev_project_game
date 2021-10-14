@@ -63,6 +63,7 @@ public class UserController {
             log.info("User not found");
             return new ResponseEntity<User>( HttpStatus.NOT_FOUND);
         }
+        user.setTeam(userExists.getTeam());
         User userUpdated = userService.updateUser(user);
         return new ResponseEntity<User>(userUpdated, HttpStatus.OK);
     }

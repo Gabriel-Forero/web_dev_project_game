@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,6 +60,19 @@ public class TeamController {
 	public ResponseEntity<List<Team>> findAllUser(){
 		List<Team> teams = teamservice.findAllTeams();
 		return new ResponseEntity<List<Team>>(teams, HttpStatus.OK);
+	}
+
+	@PutMapping("/updateTeam/{teamId}")
+	public ResponseEntity<Team> updateTeam(@PathVariable Long teamId, @RequestBody Team team){
+
+		Team teamExists = teamservice.findByTeamId(teamId);
+		if(teamExists == null){
+			log.info("team not found");
+			return new ResponseEntity<Team>( HttpStatus.NOT_FOUND);
+		}
+		team.setShip(teamExists.getShip());
+		Team teamUpdated = teamservice.updateTeam(team);
+		return new ResponseEntity<Team>(teamUpdated, HttpStatus.OK);
 	}
 
 

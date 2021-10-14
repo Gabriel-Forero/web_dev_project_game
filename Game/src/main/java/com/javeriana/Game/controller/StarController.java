@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,5 +56,18 @@ public class StarController {
 	public ResponseEntity<List<Star>> findAllStars(){
 		List<Star> stars = starService.findAllStars();
 		return new ResponseEntity<List<Star>>(stars, HttpStatus.OK);
+	}
+
+	@PutMapping("/updateStar/{starId}")
+	public ResponseEntity<Star> updateStar(@PathVariable Long starId, @RequestBody Star star){
+
+		Star starExists = starService.findByStarId(starId);
+
+		if(starExists == null){
+			log.info("star not found");
+			return new ResponseEntity<Star>( HttpStatus.NOT_FOUND);
+		}
+		Star starUpdated = starService.updateStar(star);
+		return new ResponseEntity<Star>(starUpdated, HttpStatus.OK);
 	}
 }

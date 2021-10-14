@@ -26,8 +26,7 @@ public class Planet {
     private List<Price> assets = new ArrayList<>();
 
     @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name="star_id", nullable=false)
+    @JoinColumn(name="star_id")
     private Star star;
 
     public Planet() {}

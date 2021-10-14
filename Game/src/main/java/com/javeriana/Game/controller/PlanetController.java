@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,6 +63,19 @@ public class PlanetController {
 	public ResponseEntity<List<Planet>> findAllPlanets(){
 		List<Planet> planets = planetService.findAllPlanets();
 		return new ResponseEntity<List<Planet>>(planets, HttpStatus.OK);
+	}
+
+	@PutMapping("/updatePlanet/{planetId}")
+	public ResponseEntity<Planet> updatePlanet(@PathVariable Long planetId, @RequestBody Planet planet){
+
+		Planet planetExists = planetService.findPlanetById(planetId);
+
+		if(planetExists == null){
+			return new ResponseEntity<Planet>( HttpStatus.NOT_FOUND);
+		}
+		planet.setStar(planetExists.getStar());
+		Planet planetUpdated = planetService.updatePlanet(planet);
+		return new ResponseEntity<Planet>(planetUpdated, HttpStatus.OK);
 	}
 
 }
