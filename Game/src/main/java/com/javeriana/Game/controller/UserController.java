@@ -27,6 +27,13 @@ public class UserController {
         this.teamService = teamService;
     }
 
+    @GetMapping("/findUserById/{userId}")
+    public ResponseEntity<User> findUserById(@PathVariable Long userId){
+
+        User user = userService.findUserById(userId);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<User> authenticate(@RequestBody AuthenticationDTO authenticationDTO){
 
