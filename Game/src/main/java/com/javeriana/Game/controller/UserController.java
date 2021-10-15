@@ -44,6 +44,14 @@ public class UserController {
             return new ResponseEntity( HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/findUserByDocument/{userDocument}")
+    public ResponseEntity<User> findUserByDocument(@PathVariable String userDocument){
+
+        User user = userService.findUserByDocument(userDocument);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+
+    }
+
     @PostMapping("/addUser")
     public ResponseEntity<User> addUser(@RequestBody AddUserDTO userDTO){
 
