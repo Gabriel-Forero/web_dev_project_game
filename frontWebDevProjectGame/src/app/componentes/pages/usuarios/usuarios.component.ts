@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/servicios/user.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AgregarUsuarioComponent } from '../../agregar/agregar-usuario/agregar-usuario.component';
+import { EditarUsuarioComponent } from '../../editar/editar-usuario/editar-usuario.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -6,17 +10,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
-
-
   items:any[] = [];
-  constructor() { }
+  constructor(private service: UserService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.obtener();
   }
 
-  editar(id:string)
+  obtener()
   {
+    this.service.getAll().subscribe(data =>{
+      this.items = [];
+      data.forEach((element:any) => {
+        this.items.push({
+          id:element.userId,
+          ...element
+        });
+      });
+    });
+  }
 
+  editar(idP:string)
+  {
+    let dialogRef = this.dialog.open(EditarUsuarioComponent, {
+      data: { id: idP },
+    });
   }
 
   eliminar(id:string)
@@ -24,7 +43,9 @@ export class UsuariosComponent implements OnInit {
 
   agregar()
   {
-    
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = "60%";
+    this.dialog.open(AgregarUsuarioComponent,dialogConfig);
   }
 
 }

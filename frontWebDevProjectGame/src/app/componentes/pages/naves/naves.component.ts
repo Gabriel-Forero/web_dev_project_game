@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { NaveService } from 'src/app/servicios/nave.service';
+import { AgregarNaveComponent } from '../../agregar/agregar-nave/agregar-nave.component';
+import { EditarNaveComponent } from '../../editar/editar-nave/editar-nave.component';
 
 @Component({
   selector: 'app-naves',
@@ -7,15 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavesComponent implements OnInit {
 
+  
   items:any[] = [];
-  constructor() { }
+  constructor(private service: NaveService,private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.obtener();
   }
 
-  editar(id:string)
+  obtener()
   {
+    this.service.getAll().subscribe(data =>{
+      this.items = [];
+      data.forEach((element:any) => {
+        this.items.push({
+          ...element
+        });
+      });
+    });
+  }
 
+  editar(idP:string)
+  {
+    let dialogRef = this.dialog.open(EditarNaveComponent, {
+      data: { id: idP },
+    });
   }
 
   eliminar(id:string)
@@ -23,7 +43,8 @@ export class NavesComponent implements OnInit {
 
   agregar()
   {
-    
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = "60%";
+    this.dialog.open(AgregarNaveComponent);
   }
-
 }

@@ -1,27 +1,26 @@
 <app-navbar></app-navbar>
 <div class="col" style="padding-top: 20px; padding-left: 27rem;">
 
-    <button class="btn btn-dark btn-lg" (click)="agregar()">Agregar Estrella</button>
+    <button class="btn btn-dark btn-lg" (click)="agregar()">Agregar Usuario</button>
 </div>
 <table class="table">
     <thead>
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Posición X</th>
-            <th scope="col">Posición Y</th>
-            <th scope="col">Posición Z</th>
+            <th scope="col">Documento</th>
+            <th scope="col">Rol</th>
             <th scope="col"></th>
 
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let item of items">
-            <th scope="row">{{item.id}}</th>
-            <td>{{item.nombre}}</td>
-            <td>{{item.posicionX}}</td>
-            <td>{{item.posicionY}}</td>
-            <td>{{item.posicionZ}}</td>
+            <th scope="row">{{item.userId}}</th>
+            <td>{{item.userName}}</td>
+            <td>{{item.userDocument}}</td>
+            <td>{{item.userRole}}</td>
+
             <td>
                 <button class="fas fa-edit fa-lg text-info mr-2 btn btn-light " (click)="editar(item.id)"></button>
                 <button class="fas fa-trash-alt fa-lg text-danger btn btn-light" (click)="eliminar(item.id)"></button>

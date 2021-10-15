@@ -22,6 +22,22 @@ import { EstrellasComponent } from './componentes/pages/estrellas/estrellas.comp
 import { RecursosComponent } from './componentes/pages/recursos/recursos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AgregarUsuarioComponent } from './componentes/agregar/agregar-usuario/agregar-usuario.component';
+import { AgregarNaveComponent } from './componentes/agregar/agregar-nave/agregar-nave.component';
+import { AgregarEquipoComponent } from './componentes/agregar/agregar-equipo/agregar-equipo.component';
+import { AgregarPlanetaComponent } from './componentes/agregar/agregar-planeta/agregar-planeta.component';
+import { AgregarEstrellaComponent } from './componentes/agregar/agregar-estrella/agregar-estrella.component';
+import { AgregarRecursoComponent } from './componentes/agregar/agregar-recurso/agregar-recurso.component';
+import { EditarUsuarioComponent } from './componentes/editar/editar-usuario/editar-usuario.component';
+import { EditarEquipoComponent } from './componentes/editar/editar-equipo/editar-equipo.component';
+import { EditarPlanetaComponent } from './componentes/editar/editar-planeta/editar-planeta.component';
+import { EditarEstrellaComponent } from './componentes/editar/editar-estrella/editar-estrella.component';
+import { EditarRecursoComponent } from './componentes/editar/editar-recurso/editar-recurso.component';
+import { EditarNaveComponent } from './componentes/editar/editar-nave/editar-nave.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -43,7 +59,34 @@ import { HttpClientModule } from '@angular/common/http';
     NavesComponent,
     EstrellasComponent,
     RecursosComponent,
+    AgregarUsuarioComponent,
+    AgregarNaveComponent,
+    AgregarEquipoComponent,
+    AgregarPlanetaComponent,
+    AgregarEstrellaComponent,
+    AgregarRecursoComponent,
+    EditarUsuarioComponent,
+    EditarEquipoComponent,
+    EditarPlanetaComponent,
+    EditarEstrellaComponent,
+    EditarRecursoComponent,
+    EditarNaveComponent,
     
+    
+  ],
+  entryComponents: [
+    AgregarUsuarioComponent,
+    AgregarNaveComponent,
+    AgregarEquipoComponent,
+    AgregarPlanetaComponent,
+    AgregarEstrellaComponent,
+    AgregarRecursoComponent,
+    EditarUsuarioComponent,
+    EditarEquipoComponent,
+    EditarPlanetaComponent,
+    EditarEstrellaComponent,
+    EditarRecursoComponent,
+    EditarNaveComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +95,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

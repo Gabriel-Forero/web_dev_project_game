@@ -1,0 +1,43 @@
+<main>
+    <section>
+        <h1>Editar usuario
+            <div *ngIf="loading" class="spinner-border" role="status">
+                <span class="visually-hidden">Creando...</span>
+            </div>
+        </h1>
+
+        <span *ngIf="submitte && create.invalid" class="badge badge-danger ml-3">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
+
+        <form [formGroup]="create" (ngSubmit)="editar()">
+            <div class="field">
+                <label>Nombre completo</label>
+                <input type="text" name="nombre" formControlName="userName" required>
+            </div>
+            <div class="field">
+                <label>Documento</label>
+                <input type="number" formControlName="userDocument" required>
+            </div>
+            <div class="field">
+                <label>Rol</label>
+                <select formControlName="userRole"> 
+                    <option selected disabled>Selecciona un valor</option>
+                    <option >Administrador</option>
+                    <option >MERCHANT</option>
+                    <option >PILOT</option>
+                    <option >CAPTAIN</option>
+                    
+                </select>
+            </div>
+            <div class="field">
+                <label>Contraseña</label>
+                <input type="password" formControlName="userPassword">
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit">Aceptar</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
