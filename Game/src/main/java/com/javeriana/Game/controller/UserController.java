@@ -61,10 +61,10 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
-    @PutMapping("/updateUser/{userDocument}")
-    public ResponseEntity<User> updateUser(@PathVariable String userDocument, @RequestBody User user){
+    @PutMapping("/updateUser/{userId}")
+    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User user){
 
-        User userExists = userService.findUserByDocument( userDocument);
+        User userExists = userService.findUserById(userId);
 
         if(userExists == null){
             log.info("User not found");
