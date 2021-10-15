@@ -27,7 +27,7 @@ public class UserController {
         this.teamService = teamService;
     }
 
-    @PostMapping("/findUserById/{userId}")
+    @GetMapping("/findUserById/{userId}")
     public ResponseEntity<User> findUserById(@PathVariable Long userId){
 
         User user = userService.findUserById(userId);
