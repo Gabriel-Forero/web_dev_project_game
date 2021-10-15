@@ -15,7 +15,7 @@
             </div>
             <div class="field">
                 <label>Documento</label>
-                <input type="number" formControlName="userDocument" required>
+                <input type="text" formControlName="userDocument" required>
             </div>
             <div class="field">
                 <label>Rol</label>
@@ -25,6 +25,14 @@
                     <option >MERCHANT</option>
                     <option >PILOT</option>
                     <option >CAPTAIN</option>
+                    
+                </select>
+            </div>
+            <div class="field">
+                <label>Equipo</label>
+                <select formControlName="teamId"> 
+                    <option selected disabled>Selecciona un valor</option>
+                    <option *ngFor="let item of items"> {{item.teamId}}</option>
                     
                 </select>
             </div>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/servicios/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TeamService } from 'src/app/servicios/team.service';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -15,10 +16,12 @@ export class EditarUsuarioComponent implements OnInit {
   create: FormGroup;
   submitte: boolean = false;
   loading:boolean = false;
+  items:any [] = [];
   constructor(
     private fb: FormBuilder,
     private service: UserService,
     private router:Router,
+    private serviceTeam: TeamService,
     private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: { id: string }
   ) { 
@@ -37,6 +40,7 @@ export class EditarUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.obtenerTeams();
   }
 
   editar()
@@ -56,6 +60,7 @@ export class EditarUsuarioComponent implements OnInit {
     }
     let entidad: any = 
      {
+      userId:this.data.id,
       userName: this.create.value.userName,
       userDocument:this.create.value.userDocument,
       userPassword: this.create.value.userPassword,
@@ -64,7 +69,7 @@ export class EditarUsuarioComponent implements OnInit {
       teamId: this.create.value.teamId
     }
 
-    this.service.create(entidad).subscribe(()=>
+    this.service.update(this.data.id,entidad).subscribe(()=>
     {
       this.toastr.success('Conductor registrado con exito!', 'Conductor registrado!', {
         positionClass: 'toast-bottom-right'
@@ -75,20 +80,32 @@ export class EditarUsuarioComponent implements OnInit {
    
   }
 
+  obtenerTeams()
+  {
+    this.serviceTeam.getAll().subscribe(data =>{
+      this.items = [];
+      data.forEach((element:any) => {
+        this.items.push({
+          ...element
+        });
+      });
+    });
+  }
+
   initData()
   {
     this.loading = true;
     this.service.get(this.data.id).subscribe(data => {
-      console.log(data);
+  
       this.create.setValue({
         userName: data.userName,
         userDocument:data.userDocument,
         userPassword: data.userPassword,
         userRole: data.userRole,
-        userAdmin: data.userAdmin,
-        teamId: data.teamId
+        teamId: 1
       });
   });
+  
   this.loading = false;
   }
 
