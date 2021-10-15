@@ -34,6 +34,20 @@ public class UserController {
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
+    @GetMapping("/findTeamByUserId/{userId}")
+    public ResponseEntity<Team> findTeamByUserId(@PathVariable Long userId){
+
+        User user = userService.findUserById(userId);
+        return new ResponseEntity<Team>(user.getTeam(), HttpStatus.OK);
+    }
+
+    @GetMapping("/findTeamByUserDocument/{userDocument}")
+    public ResponseEntity<Team> findTeamByUserDocument(@PathVariable String userDocument){
+
+        User user = userService.findUserByDocument(userDocument);
+        return new ResponseEntity<Team>(user.getTeam(), HttpStatus.OK);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<User> authenticate(@RequestBody AuthenticationDTO authenticationDTO){
 
