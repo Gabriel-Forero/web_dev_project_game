@@ -57,9 +57,7 @@ public class UserService {
         catch (UserNotFoundException u){
             log.error(String.valueOf(u));
             throw new EmptyResultDataAccessException(String.valueOf(u), 1);
-
         }
-
     }
 
     public User findUserById(Long id) {

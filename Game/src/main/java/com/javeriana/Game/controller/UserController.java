@@ -102,4 +102,14 @@ public class UserController {
         List<User> users = userService.findAllUsers();
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteUserById/{userId}")
+    public ResponseEntity deleteUserById(@PathVariable Long userId){
+        User userExists = userService.findUserById(userId);
+        if (userExists == null){
+            return new ResponseEntity( HttpStatus.NOT_FOUND);
+        }
+        userService.deleteUserById(userId);
+        return new ResponseEntity( HttpStatus.OK);
+    }
 }

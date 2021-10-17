@@ -1,6 +1,5 @@
 package com.javeriana.Game.model;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +21,11 @@ public class Asset {
     private Long assetVolume;
 
     @OneToMany(mappedBy = "asset")
-    @JsonManagedReference
+    @JsonIgnore
     Set<AssetsByTeam> teams;
 
     @OneToMany(mappedBy = "asset")
-    @JsonBackReference
+    @JsonIgnore
     private List<Price> planets = new ArrayList<>();
 
     public Asset() {}
