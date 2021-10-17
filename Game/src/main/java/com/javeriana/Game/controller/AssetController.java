@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.javeriana.Game.model.Asset;
-import com.javeriana.Game.model.Planet;
-import com.javeriana.Game.model.Star;
 import com.javeriana.Game.service.AssetService;
 import lombok.extern.slf4j.Slf4j;
 

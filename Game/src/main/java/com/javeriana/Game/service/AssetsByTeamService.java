@@ -31,12 +31,12 @@ public class AssetsByTeamService {
         assetsByTeamRepo.deleteById(id);
     }
 
-    public List<AssetsByTeam> findAllByTeam(Team team) {
-        return assetsByTeamRepo.findAllByTeam(team.getTeamId());
+    public List<AssetsByTeam> findAllByTeam(Long teamId) {
+        return assetsByTeamRepo.findAllByTeam(teamId);
     }
 
-    public AssetsByTeam findByTeamAndAsset(Team team, Asset asset ) {
-        return assetsByTeamRepo.findByTeamAndAsset(team.getTeamId(), asset.getAssetId());
+    public AssetsByTeam findByAsset(Long assetId) {
+        return assetsByTeamRepo.findByAsset(assetId);
     }
 
 
