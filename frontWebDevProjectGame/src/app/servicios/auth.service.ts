@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   authUser:boolean = false;
+  user:string | undefined;
   constructor(private http: HttpClient) { 
     console.log('Auth listo');
   }
@@ -20,6 +21,7 @@ export class AuthService {
       }
     );
     this.authUser = true;
+    this.user = user;
     return this.http.post(url, user,{headers});
   }
 

@@ -31,9 +31,8 @@ export class EditarUsuarioComponent implements OnInit {
       userName: ['', Validators.required],
       userDocument: ['', Validators.required],
       userPassword: ['', Validators.required],
-      userRole: [''],
-      teamId:[''],
-    
+      userRole: ['', Validators.required],
+        
     });
 
     this.initData();
@@ -66,17 +65,20 @@ export class EditarUsuarioComponent implements OnInit {
       userPassword: this.create.value.userPassword,
       userRole: this.create.value.userRole,
       userAdmin: admin,
-      teamId: this.create.value.teamId
     }
-
+    console.log(typeof(entidad.userId))
     this.service.update(this.data.id,entidad).subscribe(()=>
     {
-      this.toastr.success('Conductor registrado con exito!', 'Conductor registrado!', {
+      this.toastr.success('Usuario editado con exito!', 'Usuario editado!', {
         positionClass: 'toast-bottom-right'
       });
       this.loading = false;
       
-    });    
+    },
+    error => {
+      console.log(error);
+    }
+    );    
    
   }
 
@@ -102,7 +104,6 @@ export class EditarUsuarioComponent implements OnInit {
         userDocument:data.userDocument,
         userPassword: data.userPassword,
         userRole: data.userRole,
-        teamId: 1
       });
   });
   
