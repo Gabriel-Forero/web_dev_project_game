@@ -47,7 +47,6 @@ public class PlanetController {
 		Planet p = planetService.addPlanet(planet);
 
 		return new ResponseEntity<Planet>(p, HttpStatus.OK);
-
 	}
 
 	@GetMapping("/findPlanet/{planetId}")

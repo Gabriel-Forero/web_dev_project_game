@@ -21,7 +21,7 @@ public class Team {
     private String teamName;
 
     @Column(name= "team_current_money" , columnDefinition = "Decimal(10,2) default '000.00'")
-    private Long teamCurrentMoney;
+    private double teamCurrentMoney;
 
     @Column(name= "team_time_game", columnDefinition = "Decimal(10,2) default '000.00'")
     private Long teamTimeGame;
@@ -118,8 +118,14 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public Long getTeamCurrentMoney() {
+    public double getTeamCurrentMoney() {
+
         return teamCurrentMoney;
+    }
+
+    public void setTeamCurrentMoney(final double teamCurrentMoney) {
+
+        this.teamCurrentMoney = teamCurrentMoney;
     }
 
     public void setTeamCurrentMoney(Long teamCurrentMoney) {
