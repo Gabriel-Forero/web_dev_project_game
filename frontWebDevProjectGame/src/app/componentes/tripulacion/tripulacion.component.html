@@ -1,2 +1,32 @@
 <app-navbar></app-navbar>
-<p>tripulacion works!</p>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem; margin-top: 30px;margin-left: 20px;">
+        <div class="card-header"> Nombre del equipo: {{team.teamName}} </div>
+        <div class="card-body">
+            <h5 class="card-title"> ID: {{team.teamId}} </h5>
+            <p class="card-text">Dinero: {{team.teamCurrentMoney | currency}} </p>
+            <p class="card-text">Tiempo de juego: {{team.teamTimeGame}} hrs </p>
+        </div>
+    </div>
+
+    <div class="card text-white bg-primary mb-3" style="max-width: 18rem; margin-top: 30px;margin-left: 20px;" *ngFor="let u of user">
+        <div class="card-header"> Nombre: {{u.userName}} </div>
+        <div class="card-body">
+            <h5 class="card-title"> ID: {{u.userId}} </h5>
+            <p class="card-text">Documento: {{u.userDocument}} </p>
+            <p class="card-text">Rol: {{u.userRole}} </p>
+        </div>
+    </div>
+
+    <div class="card text-white bg-warning mb-3" style="max-width: 18rem; margin-top: 30px;margin-left: 20px;" *ngFor="let u of asset">
+        <div class="card-header"> Nombre: {{u.asset.assetName}} </div>
+        <div class="card-body">
+            <h5 class="card-title"> ID: {{u.asset.assetId}} </h5>
+            <p class="card-text">Cantidad: {{u.assetAmount}} </p>
+            <p class="card-text">Volumen: {{u.asset.assetVolume}} </p>
+        </div>
+    </div>
+
+
+
+</div>
