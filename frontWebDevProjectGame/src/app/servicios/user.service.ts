@@ -63,5 +63,20 @@ export class UserService {
     return this.getQuery(`user/findUserById/${id}`);
   }
 
+  delete(id:string)
+  {
+    return this.deleteQuery(id);
+  }
+
+  deleteQuery(query: string): Observable<any>
+  {
+    const url = `http://localhost:8081/user/deleteUserById/${query}`;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',Authorization: 'Token 1083a3555036905d46d8f851e23fe0a9d0c36087'})
+    };
+    console.log(url);
+    return this.http.delete(url);
+  }
+
 
 }
