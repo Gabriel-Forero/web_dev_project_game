@@ -1,4 +1,5 @@
 package com.javeriana.Game.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -16,12 +17,11 @@ public class StarConected {
     private Long starConectedId;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonIgnore
     @JoinColumn(name = "StarFrom")
     private Star starFrom;
 
     @ManyToOne
-    @JsonManagedReference
     @JoinColumn(name = "StarTo")
     private Star starTo;
 

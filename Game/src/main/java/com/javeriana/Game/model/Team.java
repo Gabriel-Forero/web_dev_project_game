@@ -24,16 +24,16 @@ public class Team {
     private double teamCurrentMoney;
 
     @Column(name= "team_time_game", columnDefinition = "Decimal(10,2) default '000.00'")
-    private Long teamTimeGame;
+    private double teamTimeGame;
 
     @Column(name= "team_position_x", columnDefinition = "Decimal(10,2) default '000.00'")
-    private Long teamPositionX;
+    private double teamPositionX;
 
     @Column(name= "team_position_y", columnDefinition = "Decimal(10,2) default '000.00'")
-    private Long teamPositionY;
+    private double teamPositionY;
 
     @Column(name= "team_position_z", columnDefinition = "Decimal(10,2) default '000.00'")
-    private Long teamPositionZ;
+    private double teamPositionZ;
 
     @ManyToOne
     @JsonIgnore
@@ -49,7 +49,7 @@ public class Team {
 
     public Team() {}
 
-    public Team(Long teamId, String teamName, Long teamCurrentMoney, Long teamTimeGame, Long teamPositionX, Long teamPositionY, Long teamPositionZ, Ship ship, List<User> users, Set<AssetsByTeam> assets) {
+    public Team(Long teamId, String teamName, Long teamCurrentMoney, Long teamTimeGame, double teamPositionX, double teamPositionY, double teamPositionZ, Ship ship, List<User> users, Set<AssetsByTeam> assets) {
         this.teamId = teamId;
         this.teamName = teamName;
         this.teamCurrentMoney = teamCurrentMoney;
@@ -62,27 +62,27 @@ public class Team {
         this.assets = assets;
     }
 
-    public Long getTeamPositionX() {
+    public double getTeamPositionX() {
         return teamPositionX;
     }
 
-    public void setTeamPositionX(Long teamPositionX) {
+    public void setTeamPositionX(double teamPositionX) {
         this.teamPositionX = teamPositionX;
     }
 
-    public Long getTeamPositionY() {
+    public double getTeamPositionY() {
         return teamPositionY;
     }
 
-    public void setTeamPositionY(Long teamPositionY) {
+    public void setTeamPositionY(double teamPositionY) {
         this.teamPositionY = teamPositionY;
     }
 
-    public Long getTeamPositionZ() {
+    public double getTeamPositionZ() {
         return teamPositionZ;
     }
 
-    public void setTeamPositionZ(Long teamPositionZ) {
+    public void setTeamPositionZ(double teamPositionZ) {
         this.teamPositionZ = teamPositionZ;
     }
 
@@ -132,11 +132,11 @@ public class Team {
         this.teamCurrentMoney = teamCurrentMoney;
     }
 
-    public Long getTeamTimeGame() {
+    public double getTeamTimeGame() {
         return teamTimeGame;
     }
 
-    public void setTeamTimeGame(Long teamTimeGame) {
+    public void setTeamTimeGame(double teamTimeGame) {
         this.teamTimeGame = teamTimeGame;
     }
 

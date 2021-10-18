@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.javeriana.Game.model.Planet;
 import com.javeriana.Game.model.Star;
+import com.javeriana.Game.model.StarConected;
 import com.javeriana.Game.service.StarService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -70,4 +71,6 @@ public class StarController {
 		Star starUpdated = starService.updateStar(star);
 		return new ResponseEntity<Star>(starUpdated, HttpStatus.OK);
 	}
+
+
 }

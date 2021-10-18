@@ -1,6 +1,8 @@
 package com.javeriana.Game.service;
 //import com.javeriana.Game.model.Ship;
 import com.javeriana.Game.dto.AddTeamDTO;
+import com.javeriana.Game.dto.TravelDTO;
+import com.javeriana.Game.model.Star;
 import com.javeriana.Game.model.Team;
 import com.javeriana.Game.model.User;
 import com.javeriana.Game.repository.TeamRepository;
@@ -58,5 +60,23 @@ public class TeamService {
 
     public List<User> getUsersFromTeam(Team team){
         return team.getUsers();
+    }
+
+    public TravelDTO goToOtherStar(Team team, Star star){
+        team.setTeamTimeGame(calculateTimeOfTravel(team,star));
+        team.setTeamPositionX(star.getStarPositionX());
+        team.setTeamPositionY(star.getStarPositionY());
+        team.setTeamPositionZ(star.getStarPositionZ());
+
+        Team newTeam = teamRepo.save(team);
+
+        return new TravelDTO(newTeam, star );
+    }
+
+    private double calculateTimeOfTravel(Team team, Star star){
+        double x = Math.pow(Math.abs(team.getTeamPositionX()- star.getStarPositionX()) ,2);
+        double y = Math.pow(Math.abs(team.getTeamPositionY()- star.getStarPositionY()) ,2);
+        double z = Math.pow(Math.abs(team.getTeamPositionZ()- star.getStarPositionZ()) ,2);
+        return team.getTeamTimeGame() + Math.sqrt(x+y+z)/(double) team.getShip().getShipSpeed();
     }
 }

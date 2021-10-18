@@ -3,6 +3,7 @@ import com.javeriana.Game.model.Planet;
 import com.javeriana.Game.model.Star;
 //import com.javeriana.Game.model.Team;
 //import com.javeriana.Game.model.User;
+import com.javeriana.Game.model.StarConected;
 import com.javeriana.Game.repository.StarRepository;
 //import com.javeriana.Game.repository.TeamRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +40,7 @@ public class StarService {
 
     public Planet addPlanetToStar(Star star, Planet planet){
         star.getPlanets().add(planet);
-        //log.info("New planet named: {} with id {} added to the star {}",planet.getPlanetName(), String.valueOf(planet.getPlanetId()), star.getStarName());
+        log.info("New planet named: {} with id {} added to the star {}",planet.getPlanetName(), String.valueOf(planet.getPlanetId()), star.getStarName());
         starRepo.save(star);
         return planet;
     }

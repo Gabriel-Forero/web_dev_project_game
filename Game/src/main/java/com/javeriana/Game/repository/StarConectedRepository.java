@@ -14,6 +14,9 @@ public interface StarConectedRepository extends JpaRepository<StarConected, Long
     @Query(value = "SELECT * FROM star_conected where team_id = ?1 ", nativeQuery = true)
     List<StarConected> findAllByStar(Long starConectedId);
 
+    @Query(value = "SELECT DISTINCT ON(STAR_TO) * FROM STAR_CONECTED  WHERE STAR_FROM = ?1 LIMIT 10", nativeQuery = true)
+    List<StarConected> findNearestStarsBySatrId(Long starId);
+
 }
 
 

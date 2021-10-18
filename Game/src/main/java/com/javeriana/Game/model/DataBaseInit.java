@@ -104,7 +104,7 @@ public class DataBaseInit implements ApplicationRunner {
             newTeam.setTeamId((long) id);
             newTeam.setTeamName(name);
             newTeam.setTeamCurrentMoney((long) money);
-            newTeam.setTeamTimeGame((long) time);
+            newTeam.setTeamTimeGame(0.0);
             newTeam.setTeamPositionX((long) posX);
             newTeam.setTeamPositionY((long) posY);
             newTeam.setTeamPositionZ((long) posZ);

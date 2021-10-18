@@ -23,6 +23,10 @@ public class StarConectedService {
         return (List<StarConected>) starConectedRepository.findAll();
     }
 
+    public List<StarConected> findNearestStarsBySatrId(Long starId){
+        return starConectedRepository.findNearestStarsBySatrId(starId);
+    }
+
 }
 
 
