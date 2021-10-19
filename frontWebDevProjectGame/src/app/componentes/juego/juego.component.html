@@ -1,7 +1,55 @@
 <app-navbar></app-navbar>
-
 <div class="col" style="padding-top: 20px; padding-left: 27rem;">
 
     <button *ngIf="juego" class="btn btn-danger btn-lg" (click)="finalizarJuego()">Finalizar Juego</button>
     <button *ngIf="!juego" class="btn btn-dark btn-lg" (click)="iniciarJuego()">Iniciar Juego</button>
+</div>
+
+<div *ngIf="juego">
+    <div class="col" *ngFor="let p of planetas" style="margin-top: 10px;">
+        <div class="card border-dark mb-3">
+            <div class="card-header">PLANETA: {{p.planetName}}</div>
+            <div class="card-body text-dark">
+                <button class="btn btn-primary" (click)="comprar(p.planetId)"> Comprar recursos </button>
+                <button class="btn btn-primary" style="margin-left: 10px;"> Vender recursos </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col">
+        <div class="card border-dark mb-3">
+            <div class="card-header">ESTRELLAS </div>
+            <div class="card-body text-dark">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Pos X</th>
+                            <th scope="col">Pos Y</th>
+                            <th scope="col">Pos Z</th>
+                            <th scope="col"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of estrellas; let i=index">
+                            <th scope="row">{{item.starTo.starId}}</th>
+                            <td>{{item.starTo.starName}}</td>
+                            <td>{{item.starTo.starPositionX}}</td>
+                            <td>{{item.starTo.starPositionY}}</td>
+                            <td>{{item.starTo.starPositionZ}}</td>
+
+                            <td>
+                                <button class="btn btn-primary " (click)="irAOtraEstrella(item.starTo.starId)"> ir </button>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

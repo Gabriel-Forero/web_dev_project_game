@@ -1,0 +1,34 @@
+<main>
+    <section>
+        <h1>Comprar recursos
+            <div *ngIf="loading" class="spinner-border" role="status">
+                <span class="visually-hidden">Creando...</span>
+            </div>
+        </h1>
+
+        <span *ngIf="submitte && create.invalid" class="badge badge-danger ml-3">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
+
+        <form [formGroup]="create" (ngSubmit)="comprar()">
+
+
+            <div class="field">
+                <label>Rol</label>
+                <select formControlName="asset"> 
+                    <option selected >Selecciona un valor</option>
+                    <option *ngFor="let it of items;"> {{it.asset.assetName}} </option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Cantidad a comprar</label>
+                <input type="number" name="nombre" formControlName="amount" required>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit">Comprar</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>

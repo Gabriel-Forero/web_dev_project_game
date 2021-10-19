@@ -37,6 +37,8 @@ import { EditarNaveComponent } from './componentes/editar/editar-nave/editar-nav
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { VenderComponent } from './componentes/vender/vender.component';
+import { ComprarComponent } from './componentes/comprar/comprar.component';
 
 
 
@@ -71,6 +73,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     EditarEstrellaComponent,
     EditarRecursoComponent,
     EditarNaveComponent,
+    VenderComponent,
+    ComprarComponent,
     
     
   ],
