@@ -73,6 +73,7 @@ export class ComprarComponent implements OnInit {
   {
     let pc:number = 0;
     let inventario:number = 0;
+    let data:any = {};
     for(let i=0; i<this.items.length; i++)
     {
       
@@ -97,13 +98,31 @@ export class ComprarComponent implements OnInit {
       console.log('Error no hay suficiente dinero');
     }
     
-    console.log( this.priceId);
-    console.log(this.create.value.amount);
-    console.log( this.assetId);
-    console.log(this.data.planetId);
-    console.log(this.teamId);
-    console.log(pc);  
+    console.log('Price ID:' + this.priceId);
+    console.log('cantidad:' +this.create.value.amount);  
+    console.log('asset ID:' + this.assetId);
+    console.log('planet ID:' +this.data.planetId);
+    console.log('team ID:' +this.teamId);
+    console.log('valor ID:' +pc*this.create.value.amount);  
 
+    data = {
+      priceId: this.priceId,
+      amount: this.create.value.amount,
+      assetId: this.assetId,
+      planetId:this.data.planetId,
+      teamId:this.teamId,
+      totalPC: pc*this.create.value.amount
+    }
+
+    this.service.postComprar(data).subscribe(
+      ()=>{
+        this.toastr.success('Compra realizada con exito!', 'Compra Exitosa!', {
+          positionClass: 'toast-bottom-right'
+        });
+      
+      }
+    );
+  
   }
 
 }

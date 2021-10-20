@@ -13,7 +13,7 @@ import { SidebarComponent } from './componentes/shared/sidebar/sidebar.component
 import { JuegoComponent } from './componentes/juego/juego.component';
 import { TarjetaComponent } from './componentes/shared/tarjeta/tarjeta.component';
 import { TripulacionComponent } from './componentes/tripulacion/tripulacion.component';
-import { UserComponent } from './componentes/pages/user/user.component';
+
 import { PlanetasComponent } from './componentes/pages/planetas/planetas.component';
 import { UsuariosComponent } from './componentes/pages/usuarios/usuarios.component';
 import { TeamsComponent } from './componentes/pages/teams/teams.component';
@@ -54,7 +54,6 @@ import { ComprarComponent } from './componentes/comprar/comprar.component';
     JuegoComponent,
     TarjetaComponent,
     TripulacionComponent,
-    UserComponent,
     PlanetasComponent,
     UsuariosComponent,
     TeamsComponent,

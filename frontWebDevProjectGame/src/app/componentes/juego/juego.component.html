@@ -11,7 +11,7 @@
             <div class="card-header">PLANETA: {{p.planetName}}</div>
             <div class="card-body text-dark">
                 <button class="btn btn-primary" (click)="comprar(p.planetId)"> Comprar recursos </button>
-                <button class="btn btn-primary" style="margin-left: 10px;"> Vender recursos </button>
+                <button class="btn btn-primary" style="margin-left: 10px;" (click)="vender(p.planetId)"> Vender recursos </button>
             </div>
         </div>
     </div>
