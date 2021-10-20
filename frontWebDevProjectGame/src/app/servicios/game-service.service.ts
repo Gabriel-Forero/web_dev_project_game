@@ -69,8 +69,29 @@ export class GameServiceService {
     this.estrellaActual = parseInt(idS);
     return this.getQuery(`/team/goToOtherStar/${idT}/${idS}`);
   }
+  
+  postComprar(data:any): Observable<any>
+  {
+    return this.postQuery(`sales/buying`, data);
+  }
 
+  postVender(data:any): Observable<any>
+  {
+    return this.postQuery(`sales/buying`, data);
+  }
+  
+  postQuery(query: string, datos: any) {
+    const url = `http://localhost:8081/${query}`;
 
+    const headers = new HttpHeaders(
+      {
+        'Authorization': 'Token 1083a3555036905d46d8f851e23fe0a9d0c36087'
+      }
+    );
+    console.log(url);
+    console.log(datos);
+    return this.http.post(url, datos, { headers });
+  }
 
 
 }

@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 import { GameServiceService } from 'src/app/servicios/game-service.service';
 import { TripulacionService } from 'src/app/servicios/tripulacion.service';
 import { ComprarComponent } from '../comprar/comprar.component';
+import { VenderComponent } from '../vender/vender.component';
 
 @Component({
   selector: 'app-juego',
@@ -103,6 +104,11 @@ export class JuegoComponent implements OnInit {
     let dialogRef = this.dialog.open(ComprarComponent, {
       data: { planetId:idP},
     });
+  }
+
+  vender()
+  {
+    let dialogRef = this.dialog.open(VenderComponent);
   }
 
 }
