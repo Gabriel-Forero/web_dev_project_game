@@ -94,6 +94,7 @@ public class SellingUseCaseController {
 			priceService.addPrice(newPrice);
 		}
 		assetsByTeamService.updateAssetsByTeam(assetsByTeam);
+
 		teamService.updateTeam(team);
 
 		return new ResponseEntity(HttpStatus.OK);
