@@ -39,6 +39,11 @@ public class AssetsByTeamService {
         return assetsByTeamRepo.findByAsset(assetId);
     }
 
+    public AssetsByTeam findAssetByTeamAndAsset(Long teamId, Long assetId){
+
+        return assetsByTeamRepo.findAssetByTeamAndAsset(teamId, assetId);
+    };
+
 
 
 

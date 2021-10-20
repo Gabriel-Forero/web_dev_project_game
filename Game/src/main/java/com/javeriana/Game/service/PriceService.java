@@ -38,9 +38,17 @@ public class PriceService {
         return mapper.mapperToPriceDTO(priceRepo.findByPlanetAndAsset(planet.getPlanetId(),asset.getAssetId()));
     }
 
+    public Price findByPlanetAndAssetReturn(Planet planet, Asset asset) {
+        return priceRepo.findByPlanetAndAsset(planet.getPlanetId(),asset.getAssetId());
+    }
+
     public PriceDTO findByPriceId(Long priceId) {
         final MapperPriceDTO mapper = new MapperPriceDTO();
         return mapper.mapperToPriceDTO(priceRepo.findByPriceId(priceId));
+    }
+
+    public Price findByPriceIdReturnPrice(Long priceId) {
+        return priceRepo.findByPriceId(priceId);
     }
 
     public List<PriceDTO> findAllByPlanet(Long planetId) {

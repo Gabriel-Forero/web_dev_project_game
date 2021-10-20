@@ -13,4 +13,7 @@ public interface AssetsByTeamRepository extends JpaRepository<AssetsByTeam, Long
 
     @Query(value = "SELECT * FROM assets_by_team where team_id = ?1 ", nativeQuery = true)
     List<AssetsByTeam> findAllByTeam(Long teamId);
+
+    @Query(value = "SELECT * FROM assets_by_team where team_id = ?1 and asset_id = ?2 ", nativeQuery = true)
+    AssetsByTeam findAssetByTeamAndAsset(Long teamId, Long assetId);
 }
