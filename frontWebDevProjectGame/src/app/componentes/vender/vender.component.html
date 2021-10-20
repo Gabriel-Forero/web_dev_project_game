@@ -8,11 +8,11 @@
 
         <span *ngIf="submitte && create.invalid" class="badge badge-danger ml-3">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
 
-        <form [formGroup]="create" (ngSubmit)="comprar()">
+        <form [formGroup]="create" (ngSubmit)="vender()">
 
 
             <div class="field">
-                <label>Rol</label>
+                <label>Recurso</label>
                 <select formControlName="asset"> 
                     <option selected >Selecciona un valor</option>
                     <option *ngFor="let it of items;"> {{it.asset.assetName}} </option>

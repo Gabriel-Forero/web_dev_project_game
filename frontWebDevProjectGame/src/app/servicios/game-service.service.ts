@@ -77,7 +77,7 @@ export class GameServiceService {
 
   postVender(data:any): Observable<any>
   {
-    return this.postQuery(`sales/buying`, data);
+    return this.postQuery(`sales/selling`, data);
   }
   
   postQuery(query: string, datos: any) {

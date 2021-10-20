@@ -106,9 +106,11 @@ export class JuegoComponent implements OnInit {
     });
   }
 
-  vender()
+  vender(idP:string)
   {
-    let dialogRef = this.dialog.open(VenderComponent);
+    let dialogRef = this.dialog.open(VenderComponent, {
+      data: { planetId:idP},
+    });
   }
 
 }

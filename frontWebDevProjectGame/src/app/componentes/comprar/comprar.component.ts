@@ -122,7 +122,6 @@ export class ComprarComponent implements OnInit {
       
       }
     );
-     
   
   }
 

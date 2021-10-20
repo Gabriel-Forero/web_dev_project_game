@@ -17,6 +17,7 @@ export class VenderComponent implements OnInit {
   submitte: boolean = false;
   loading:boolean = false;
   items:any [] = [];
+  itemsP:any [] = [];
   teamId:string = '0';
   teamMoney:number = 0;
   team:any = {};
@@ -41,25 +42,25 @@ export class VenderComponent implements OnInit {
   ngOnInit(): void {
     this.docUser = this.authService.getUserDoc();
     this.getTeam(this.docUser);
-    this.obtenerAsset();
+    this.obtenerAssetPlaneta();
+    
   }
 
-  
   getTeam(id:string)
   { 
-    console.log(id);
+    
     this.serviceT.getTeam(id).subscribe(data =>{
       console.log(data);
       this.team = data;
       this.teamId = data.teamId;
       this.teamMoney = data.teamCurrentMoney;
-
+      this.obtenerAsset();
     });
   }
 
   obtenerAsset()
   {
-    console.log(this.teamId);
+    console.log('Team id ' +this.teamId);
     this.service.getRecursosDelTeam(this.teamId).subscribe(data =>{
       this.items = [];
       data.forEach((element:any) => {
@@ -70,40 +71,76 @@ export class VenderComponent implements OnInit {
     });
   }
 
-  comprar()
+  obtenerAssetPlaneta()
   {
-    let pv:number = 0;
+    this.service.getRecursosPlanetas(this.data.planetId).subscribe(data =>{
+      this.itemsP = [];
+      data.forEach((element:any) => {
+        this.itemsP.push({
+          ...element
+        });
+      });
+    });
+  }
+
+  vender()
+  {
+    let pv:number = 2;
     let inventario:number = 0;
+    let data:any = {};
+
     for(let i=0; i<this.items.length; i++)
     {
       
-      console.log(this.create.value.asset);
+      console.log(this.items[i]);
       if(this.create.value.asset == this.items[i].asset.assetName)
       {
-        console.log(this.items[i]);
-        this.priceId = this.items[i].priceId;
+        this.priceId = this.items[i].assetsByTeamId;
         this.assetId = this.items[i].asset.assetId;
-        pv = this.items[i].pv;
         inventario = this.items[i].assetAmount;
       }
     }
+
+    for(let i=0; i<this.itemsP.length; i++)
+    {
+      
+      console.log(this.itemsP[i]);
+      if(this.create.value.asset == this.itemsP[i].asset.assetName)
+      {
+        pv = this.itemsP[i].pv;
+      }
+    
+    }
+
     console.log(inventario);
+
     if(this.create.value.amount > inventario)
     {
       console.log('Error no hay inventario');
     }
-
-    if(this.teamMoney < this.create.value.amount*pv)
-    {
-      console.log('Error no hay suficiente dinero');
-    }
     
-    console.log( this.priceId);
-    console.log(this.create.value.amount);  
-    console.log( this.assetId);
-    console.log(this.data.planetId);
-    console.log(this.teamId);
-    console.log(pv);  
+    console.log('AsseyByTeamId ID:' + this.priceId);
+    console.log('cantidad:' +this.create.value.amount);  
+    console.log('asset ID:' + this.assetId);
+    console.log('planet ID:' +this.data.planetId);
+    console.log('team ID:' +this.teamId);
+    console.log('valor :' +pv*this.create.value.amount);  
 
+    data = {
+      priceId: this.priceId,
+      amount: this.create.value.amount,
+      assetId: this.assetId,
+      planetId:this.data.planetId,
+      teamId:this.teamId,
+      totalPC: pv*this.create.value.amount
+    } 
+    this.service.postVender(data).subscribe(
+      ()=>{
+        this.toastr.success('Venta realizada con exito!', 'Venta Exitosa!', {
+          positionClass: 'toast-bottom-right'
+        });
+      
+      }
+    );
   }
 }
