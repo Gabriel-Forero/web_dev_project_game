@@ -82,6 +82,7 @@ export class AgregarUsuarioComponent implements OnInit {
       this.toastr.success('Conductor registrado con exito!', 'Conductor registrado!', {
         positionClass: 'toast-bottom-right'
       });
+      this.items.push(entidad);
       this.loading = false;
       
     });    

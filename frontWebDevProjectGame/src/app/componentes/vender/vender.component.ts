@@ -116,31 +116,29 @@ export class VenderComponent implements OnInit {
 
     if(this.create.value.amount > inventario)
     {
-      console.log('Error no hay inventario');
+      this.toastr.error('La cantidad excede el inventario!', 'Venta NO Exitosa!', {
+        positionClass: 'toast-bottom-right'
+      });
     }
-    
-    console.log('AsseyByTeamId ID:' + this.priceId);
-    console.log('cantidad:' +this.create.value.amount);  
-    console.log('asset ID:' + this.assetId);
-    console.log('planet ID:' +this.data.planetId);
-    console.log('team ID:' +this.teamId);
-    console.log('valor :' +pv*this.create.value.amount);  
+    else
+    {
+      data = {
+        priceId: this.priceId,
+        amount: this.create.value.amount,
+        assetId: this.assetId,
+        planetId:this.data.planetId,
+        teamId:this.teamId,
+        totalPC: pv*this.create.value.amount
+      } 
+      this.service.postVender(data).subscribe(
+        ()=>{
+          this.toastr.success('Venta realizada con exito!', 'Venta Exitosa!', {
+            positionClass: 'toast-bottom-right'
+          });
+        
+        }
+      );
+    }
 
-    data = {
-      priceId: this.priceId,
-      amount: this.create.value.amount,
-      assetId: this.assetId,
-      planetId:this.data.planetId,
-      teamId:this.teamId,
-      totalPC: pv*this.create.value.amount
-    } 
-    this.service.postVender(data).subscribe(
-      ()=>{
-        this.toastr.success('Venta realizada con exito!', 'Venta Exitosa!', {
-          positionClass: 'toast-bottom-right'
-        });
-      
-      }
-    );
   }
 }

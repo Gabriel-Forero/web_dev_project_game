@@ -87,41 +87,39 @@ export class ComprarComponent implements OnInit {
         inventario = this.items[i].assetAmount;
       }
     }
-    console.log(inventario);
-    if(this.create.value.amount > inventario)
-    {
-      console.log('Error no hay inventario');
-    }
-
-    if(this.teamMoney < this.create.value.amount*pc)
-    {
-      console.log('Error no hay suficiente dinero');
-    }
     
-    console.log('Price ID:' + this.priceId);
-    console.log('cantidad:' +this.create.value.amount);  
-    console.log('asset ID:' + this.assetId);
-    console.log('planet ID:' +this.data.planetId);
-    console.log('team ID:' +this.teamId);
-    console.log('valor ID:' +pc*this.create.value.amount);  
-
-    data = {
-      priceId: this.priceId,
-      amount: this.create.value.amount,
-      assetId: this.assetId,
-      planetId:this.data.planetId,
-      teamId:this.teamId,
-      totalPC: pc*this.create.value.amount
+    if(this.create.value.amount > inventario ||this.teamMoney < this.create.value.amount*pc )
+    {
+      this.toastr.error('No se pudo realizar la compra, No teien dinero o no hay suficiente recurso en el planera!', 'Compra NO Exitosa!', {
+        positionClass: 'toast-bottom-right'
+      });
+    }
+    else
+    {
+      data = {
+        priceId: this.priceId,
+        amount: this.create.value.amount,
+        assetId: this.assetId,
+        planetId:this.data.planetId,
+        teamId:this.teamId,
+        totalPC: pc*this.create.value.amount
+      }
+  
+      this.service.postComprar(data).subscribe(
+        ()=>{
+          this.toastr.success('Compra realizada con exito!', 'Compra Exitosa!', {
+            positionClass: 'toast-bottom-right'
+          });
+        
+        }
+      );
     }
 
-    this.service.postComprar(data).subscribe(
-      ()=>{
-        this.toastr.success('Compra realizada con exito!', 'Compra Exitosa!', {
-          positionClass: 'toast-bottom-right'
-        });
-      
-      }
-    );
+   
+    
+    
+
+   
   
   }
 

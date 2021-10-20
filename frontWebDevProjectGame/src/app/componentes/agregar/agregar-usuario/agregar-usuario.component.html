@@ -20,7 +20,7 @@
             <div class="field">
                 <label>Rol</label>
                 <select formControlName="userRole"> 
-                    <option selected disabled>Selecciona un valor</option>
+                    <option selected >Selecciona un valor</option>
                     <option >Administrador</option>
                     <option >MERCHANT</option>
                     <option >PILOT</option>
@@ -31,7 +31,7 @@
             <div class="field">
                 <label>Equipo</label>
                 <select formControlName="teamId"> 
-                    <option selected disabled>Selecciona un valor</option>
+                    <option selected >Selecciona un valor</option>
                     <option *ngFor="let item of items"> {{item.teamId}}</option>
                     
                 </select>
