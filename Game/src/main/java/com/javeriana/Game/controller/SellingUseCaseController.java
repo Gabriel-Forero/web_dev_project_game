@@ -77,7 +77,7 @@ public class SellingUseCaseController {
 		Asset asset  = assetService.findAssetById(buyingDTO.getAssetId());
 		Team team = teamService.findByTeamId(buyingDTO.getTeamId());
 		Planet planet = planetService.findPlanetById(buyingDTO.getPlanetId());
-		AssetsByTeam assetsByTeam = assetsByTeamService.findByAsset(buyingDTO.getAssetId());
+		AssetsByTeam assetsByTeam = assetsByTeamService.findByAsset(buyingDTO.getPriceId());
 		Price price = priceService.findByPlanetAndAssetReturn(planet,asset);
 
 		team.setTeamCurrentMoney(team.getTeamCurrentMoney()+ buyingDTO.getTotalPC());
