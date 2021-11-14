@@ -138,7 +138,6 @@ public class UserController {
         User userExists = userService.findUserById(userId);
 
         if(userExists == null){
-            log.info("User not found");
             return new ResponseEntity<User>( HttpStatus.NOT_FOUND);
         }
         user.setTeam(userExists.getTeam());
