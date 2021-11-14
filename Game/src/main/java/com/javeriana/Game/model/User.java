@@ -1,5 +1,7 @@
 package com.javeriana.Game.model;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -10,7 +12,7 @@ import javax.persistence.*;
 public class User {
 
     public enum UserRoles {
-        MERCHANT, PILOT, CAPTAIN;
+        MERCHANT, PILOT, CAPTAIN, ADMIN;
     }
 
     @Id
@@ -27,7 +29,7 @@ public class User {
     @Column(name= "user_password", nullable = false)
     private String userPassword;
 
-    @Column(name= "user_role", nullable = false)
+    @Column(name= "user_role")
     @Enumerated(EnumType.STRING)
     private UserRoles userRole;
 
@@ -96,5 +98,26 @@ public class User {
 
     public void setUserAdmin(Boolean userAdmin) {
         this.userAdmin = userAdmin;
+    }
+
+    @Override public boolean equals(final Object o) {
+
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
+        final User user = (User) o;
+        return Objects.equals(getUserId(), user.getUserId()) && Objects.equals(getUserName(), user.getUserName())
+                && Objects.equals(getUserDocument(), user.getUserDocument()) && Objects.equals(getUserPassword(),
+                                                                                               user.getUserPassword())
+                && getUserRole() == user.getUserRole() && Objects.equals(getTeam(), user.getTeam()) && Objects.equals(
+                getUserAdmin(), user.getUserAdmin());
+    }
+
+    @Override public int hashCode() {
+
+        return Objects.hash(getUserId(), getUserName(), getUserDocument(), getUserPassword(), getUserRole(), getTeam(), getUserAdmin());
     }
 }

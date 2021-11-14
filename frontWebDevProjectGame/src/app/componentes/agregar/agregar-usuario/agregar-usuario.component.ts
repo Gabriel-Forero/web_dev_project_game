@@ -30,7 +30,7 @@ export class AgregarUsuarioComponent implements OnInit {
       userDocument: ['', Validators.required],
       userPassword: ['', Validators.required],
       userRole: ['', Validators.required],
-      teamId:['', Validators.required],
+      teamId:[''],
     
     });
   }
@@ -62,9 +62,14 @@ export class AgregarUsuarioComponent implements OnInit {
 
     this.loading = true;
     let admin:boolean = false;
-    if(this.create.value.userRole == 'Administrador')
+    let teamId :any = null;
+    if(this.create.value.userRole == 'ADMIN')
     {
       admin = true;
+       
+    }
+    else{
+      teamId = this.create.value.teamId;
     }
     let entidad: any = 
      {
@@ -74,7 +79,7 @@ export class AgregarUsuarioComponent implements OnInit {
       userPassword: this.create.value.userPassword,
       userRole: this.create.value.userRole,
       userAdmin: admin,
-      teamId: this.create.value.teamId
+      teamId: teamId,
     }
  
     this.service.create(entidad).subscribe(()=>

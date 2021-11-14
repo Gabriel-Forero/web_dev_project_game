@@ -37,7 +37,7 @@ public class UserService {
     }
 
     public User updateUser(User user) {
-        log.info("user {}", user.toString());
+
         if( user != null){
             log.info("user {} updated",user.toString());
             return userRepo.save(user);
@@ -53,6 +53,21 @@ public class UserService {
     public User findUserByDocument(String document) {
         try {
             return userRepo.findByDocument(document);
+        }
+        catch (UserNotFoundException u){
+            log.error(String.valueOf(u));
+            throw new EmptyResultDataAccessException(String.valueOf(u), 1);
+        }
+    }
+
+    public User authenication(String document, String password){
+
+        try {
+            User user=  userRepo.findByDocument(document);
+            if(password.equals(user.getUserPassword())){
+                return user;
+            }
+            throw new EmptyResultDataAccessException("bad credentials", 1);
         }
         catch (UserNotFoundException u){
             log.error(String.valueOf(u));

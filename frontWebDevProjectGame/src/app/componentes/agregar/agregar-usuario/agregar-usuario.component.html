@@ -21,7 +21,7 @@
                 <label>Rol</label>
                 <select formControlName="userRole"> 
                     <option selected >Selecciona un valor</option>
-                    <option >Administrador</option>
+                    <option >ADMIN</option>
                     <option >MERCHANT</option>
                     <option >PILOT</option>
                     <option >CAPTAIN</option>
@@ -33,7 +33,6 @@
                 <select formControlName="teamId"> 
                     <option selected >Selecciona un valor</option>
                     <option *ngFor="let item of items"> {{item.teamId}}</option>
-                    
                 </select>
             </div>
             <div class="field">

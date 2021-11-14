@@ -38,7 +38,6 @@ public class Asset {
         this.planets = planets;
     }
 
-
     public Set<AssetsByTeam> getTeams() {
         return teams;
     }
