@@ -36,6 +36,7 @@ class UserControllerTest {
 		assertNotNull(response);
 	}
 
+
 	@Test
 	void findUserByIdEquals() {
 		when(userService.findUserById(1L)).thenReturn(Utils.buildUser());

@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.javeriana.Game.dto.AddUserDTO;
 import com.javeriana.Game.dto.AuthenticationDTO;
+import com.javeriana.Game.model.Ship;
+import com.javeriana.Game.model.Team;
 import com.javeriana.Game.model.User;
 
 public class Utils {
@@ -24,6 +26,7 @@ public class Utils {
 		user.setUserPassword("pass");
 		user.setUserDocument("123");
 		user.setUserName("Pepe");
+		user.setUserAdmin(true);
 		user.setUserRole(User.UserRoles.CAPTAIN);
 		return user;
 	}
@@ -34,6 +37,7 @@ public class Utils {
 		auth.setUserPassword("pass");
 		return auth;
 	}
+
 
 	public static ResponseEntity<User> buildUserResponseEntity(){
 		return new ResponseEntity<User>(buildUser(), HttpStatus.OK);
