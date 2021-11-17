@@ -63,6 +63,10 @@ export class UserService {
     return this.getQuery(`user/findUserById/${id}`);
   }
 
+  getByUserDoc(id: string): Observable<any> {
+    return this.getQuery(`user/findUserByDocument/${id}`);
+  }
+
   delete(id:string)
   {
     return this.deleteQuery(id);

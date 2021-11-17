@@ -12,11 +12,14 @@ import { TeamsComponent } from './componentes/pages/teams/teams.component';
 import { UsuariosComponent } from './componentes/pages/usuarios/usuarios.component';
 import { TripulacionComponent } from './componentes/tripulacion/tripulacion.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CaptainGuard } from './guards/captain.guard';
+import { OtherGuard } from './guards/other.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, canActivate: [ AuthGuard]},
+  {path: 'home', component: HomeComponent, canActivate: [ AuthGuard && CaptainGuard]},
   {path: 'login', component: LogInComponent},
-  {path: 'crud', component: CrudComponent,canActivate: [ AuthGuard]},
+  {path: 'crud', component: CrudComponent,canActivate: [ AuthGuard && AdminGuard]},
   {path: 'crud/usuario', component: UsuariosComponent,canActivate: [ AuthGuard]},
   {path: 'crud/equipo', component: TeamsComponent,canActivate: [ AuthGuard]},
   {path: 'crud/recursos', component: RecursosComponent,canActivate: [ AuthGuard]},
@@ -24,7 +27,7 @@ const routes: Routes = [
   {path: 'crud/planetas', component: PlanetasComponent,canActivate: [ AuthGuard]},
   {path: 'crud/nave', component: NavesComponent,canActivate: [ AuthGuard]},
   {path: 'juego', component: JuegoComponent,canActivate: [ AuthGuard]},
-  {path: 'tripulacion', component: TripulacionComponent,canActivate: [ AuthGuard]},
+  {path: 'tripulacion', component: TripulacionComponent,canActivate: [ AuthGuard && (CaptainGuard || AdminGuard) ]},
   {path: '', pathMatch: 'full', redirectTo: 'login'},
   {path: '**', pathMatch: 'full', redirectTo: 'login'},
 ];

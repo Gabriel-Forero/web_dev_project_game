@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,9 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   authUser:boolean = false;
   user:any = '';
-  constructor(private http: HttpClient) { 
+  admin:boolean= false;
+  role:any = '';
+  constructor(private http: HttpClient, private userService: UserService) { 
     console.log('Auth listo');
   }
 
@@ -22,6 +25,11 @@ export class AuthService {
     );
     this.authUser = true;
     this.user = user;
+    console.log(this.user);
+    this.userService.getByUserDoc(this.user.userDocument).pipe().subscribe(data =>{
+      this.role = data.userRole;
+      this.admin = data.userAdmin;
+    });
     return this.http.post(url, user,{headers});
   }
 
@@ -31,7 +39,24 @@ export class AuthService {
    }
 
    getUserDoc():any{
+     console.log(this.user);
      return this.user.userDocument;
    }
-  
+
+   getUserRole():any
+   { 
+     return this.role;
+     
+   }
+
+   logOut(): any
+   {
+     return this.authUser;
+   }
+
+   getUserAdmin():any
+   {
+    this.authUser = false;
+   }
+
 }

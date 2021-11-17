@@ -39,7 +39,7 @@ export class LogInComponent implements OnInit {
     
     this.auth.login(usuario).subscribe(()=>
     {
-      this.router.navigate(['/crud']);
+      this.router.navigate(['/juego']);
     });    
 
     

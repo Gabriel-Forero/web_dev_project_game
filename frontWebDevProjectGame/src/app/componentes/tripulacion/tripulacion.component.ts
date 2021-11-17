@@ -14,10 +14,13 @@ export class TripulacionComponent implements OnInit {
   team:any = {};
   user:any[] = [];
   asset:any[] = [];
+  role:any = '';
   constructor(private authService:AuthService, private service:TripulacionService) { }
 
   ngOnInit(): void {
     this.docUser = this.authService.getUserDoc();
+    this.role =  this.authService.getUserRole();
+    console.log(  this.role);
     this.getTeam(this.docUser);
     
   }
