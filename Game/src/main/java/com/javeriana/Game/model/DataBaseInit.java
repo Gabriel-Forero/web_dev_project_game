@@ -164,6 +164,22 @@ public class DataBaseInit implements ApplicationRunner {
 
         }
 
+        for(int i = 0;i< 5;++i){
+            int id = random.nextInt(1000000);
+            String name = randomGen.generate(5, 10);
+            String document = randomGen.generate(5, 10);
+            String password = randomGen.generate(5, 10);
+            User newUser = new User();
+            newUser.setUserId((long) id);
+            newUser.setUserDocument(document);
+            newUser.setUserName(name);
+            newUser.setUserPassword(password);
+            newUser.setUserAdmin(false);
+            newUser.setUserRole(UserRoles.ADMIN);
+            userRepository.save(newUser);
+
+        }
+
     }
 
     private void createAsset() {
