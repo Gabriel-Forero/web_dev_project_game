@@ -9,20 +9,25 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class NavbarComponent implements OnInit {
   
-  crud:boolean = false;
-  tripulacion:boolean = false;
+  crud:boolean = true;
+  tripulacion:boolean = true;
   constructor(private router:Router, private auth: AuthService) {
    
-    if(this.auth.admin)
+    console.log(this.auth.getUserRole());
+    if(this.auth.getUserRole() == 'ADMIN')
     {
-      this.crud = true;
+      //this.tripulacion = false;
     }
     
     if( this.auth.getUserRole() == 'CAPTAIN')
     {
       console.log(this.auth.getUserRole());
-      this.tripulacion = true;
+      //this.crud = false;
     }
+
+    console.log(this.crud);
+    console.log(this.tripulacion);
+
    }
 
   ngOnInit(): void {
