@@ -17,7 +17,7 @@ export class LogInComponent implements OnInit {
     this.loginForm = this.fb.group(
       {
         userDocument:['', Validators.required],
-        password:['', Validators.required]
+        userPassword:['', Validators.required]
       });
    }
 
@@ -36,7 +36,7 @@ export class LogInComponent implements OnInit {
     let usuario:any =
     {
       userDocument:this.loginForm.value.userDocument,
-      password:this.loginForm.value.password
+      userPassword:this.loginForm.value.userPassword
     }
     
     this.auth.login(usuario).subscribe(()=>

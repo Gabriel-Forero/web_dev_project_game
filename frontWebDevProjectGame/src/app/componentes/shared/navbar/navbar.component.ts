@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
     if(this.auth.admin)
     {
       this.crud = true;
-      this.tripulacion = true;
     }
     
     if( this.auth.getUserRole() == 'CAPTAIN')
