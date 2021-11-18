@@ -120,4 +120,17 @@ public class User {
 
         return Objects.hash(getUserId(), getUserName(), getUserDocument(), getUserPassword(), getUserRole(), getTeam(), getUserAdmin());
     }
+
+    @Override public String toString() {
+
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userDocument='" + userDocument + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userRole=" + userRole +
+                ", team=" + team +
+                ", userAdmin=" + userAdmin +
+                '}';
+    }
 }
