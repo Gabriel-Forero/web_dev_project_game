@@ -63,6 +63,7 @@ public class UserService {
     public User authenication(String document, String password){
 
         try {
+
             User user=  userRepo.findByDocument(document);
             if(password.equals(user.getUserPassword())){
                 return user;
